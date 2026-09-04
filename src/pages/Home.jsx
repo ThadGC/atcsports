@@ -57,7 +57,7 @@ export default function Home() {
             alt="An ATC Sports ball carrier cutting into the end zone as a defender reaches for the flag"
             /* Widened and left-anchored on desktop so the athlete sits on the opposite
                side from the headline; the crop is raised so his head clears the nav. */
-            className="absolute inset-y-0 left-0 h-full w-full max-w-none object-cover object-[45.4%_center] sm:object-[58%_30%] md:w-[130%] md:object-[40%_26%] lg:w-[126%] lg:object-[42%_28%] xl:w-[120%]"
+            className="absolute inset-y-0 left-0 h-full w-full max-w-none object-cover object-[39.4%_center] sm:object-[58%_30%] md:w-[130%] md:object-[40%_32%] lg:w-[126%] lg:object-[42%_34%] xl:w-[120%]"
             fetchpriority="high"
             width="1400"
             height="1302"
@@ -105,7 +105,7 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={400}>
-              <dl className="mt-12 grid max-w-2xl grid-cols-2 gap-x-4 gap-y-6 sm:mt-14 sm:grid-cols-4">
+              <dl className="mt-12 grid max-w-3xl grid-cols-2 gap-x-5 gap-y-6 sm:mt-14 sm:grid-cols-4">
                 {HERO_STATS.map(([n, label]) => (
                   <div key={label} className="border-l border-gold/28 pl-4">
                     <dt className="whitespace-nowrap font-display text-2xl text-metal sm:text-[1.6rem] lg:text-3xl">{n}</dt>
@@ -360,7 +360,7 @@ export default function Home() {
                     src="/img/champion.jpg"
                     alt="An ATC Sports athlete on the field in full uniform"
                     loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className="absolute inset-0 h-full w-full object-cover object-[center_15%]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink-800/85 to-transparent lg:bg-gradient-to-r" />
                 </div>

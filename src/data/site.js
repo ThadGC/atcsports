@@ -204,7 +204,8 @@ export const gallery = [
   { src: '/img/qb-drop.jpg', alt: 'A quarterback setting his feet to throw while his coach watches' },
   { src: '/img/action-3.jpg', alt: 'An ATC Sports player running the ball back up the sideline during a Saturday game' },
   { src: '/img/action-5.jpg', alt: 'A young athlete releasing a pass as a coach looks on from the sideline' },
-  { src: '/img/champion.jpg', alt: 'An ATC Sports player in a white and gold jersey flexing on the field' },
+  // Tall frame, subject high in it: without this the crop cuts his face off.
+  { src: '/img/champion.jpg', alt: 'An ATC Sports player in a white and gold jersey flexing on the field', pos: 'object-[center_15%]' },
 ]
 
 // Top-level navigation. The league tools group under one item so the bar stays a

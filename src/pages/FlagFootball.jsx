@@ -319,7 +319,7 @@ export default function FlagFootball() {
       </Section>
 
       <Section className="section-ruled">
-        <div className="shell grid gap-10 lg:grid-cols-12 lg:gap-14">
+        <div className="shell grid gap-7 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
             <SectionHead eyebrow="Refund policy" title="Plans change. Here's where you stand." />
           </div>
@@ -329,9 +329,14 @@ export default function FlagFootball() {
                 <div className="p-6 sm:p-8">
                   <ul className="divide-y divide-white/8">
                     {flagFootball.refunds.map(([when, what]) => (
-                      <li key={when} className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-4">
-                        <span className="text-[0.92rem] text-white/68">{when}</span>
-                        <span className="font-display text-lg tracking-wide text-metal">{what}</span>
+                      <li
+                        key={when}
+                        className="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-6"
+                      >
+                        <span className="text-[0.92rem] leading-snug text-white/68">{when}</span>
+                        <span className="whitespace-nowrap font-display text-lg tracking-wide text-metal">
+                          {what}
+                        </span>
                       </li>
                     ))}
                   </ul>

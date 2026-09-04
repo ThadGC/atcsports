@@ -2,9 +2,10 @@
 //
 // Phone heroes are tall and the photo is wide, so object-cover fits by height and
 // crops only horizontally: object-position Y does nothing, and the athlete's head
-// lands wherever it sits in the source. In this photo that is the top fifth, well
-// above the headline. Cropping the source so his head sits ~40% down the frame is
-// the only way to place him beside the words.
+// lands wherever it sits in the source. Cropping the source is the only lever on his
+// vertical position, and it doubles as the zoom control: a taller crop means less
+// upscaling. At the current target the crop is the whole frame, which is both the
+// highest his head can sit and the least magnified the photo can be.
 import sharp from 'sharp'
 
 const SRC = process.argv[2]
@@ -12,7 +13,7 @@ const { width, height } = await sharp(SRC).metadata()
 
 // Head measured on the source, as a fraction of each axis.
 const HEAD_Y = 0.195
-const TARGET_Y = 0.30 // where it should sit in the finished crop
+const TARGET_Y = 0.195 // where it should sit in the finished crop
 
 const cropH = Math.round((HEAD_Y * height) / TARGET_Y)
 await sharp(SRC)

@@ -1,7 +1,7 @@
 import Reveal from './Reveal.jsx'
 import Button from './Button.jsx'
 
-export default function PageHero({ eyebrow, title, accent, lead, image, mobileImage, alt, ctas, stats }) {
+export default function PageHero({ eyebrow, title, accent, lead, image, mobileImage, focal, alt, ctas, stats }) {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
@@ -12,7 +12,7 @@ export default function PageHero({ eyebrow, title, accent, lead, image, mobileIm
               src={image}
               alt={alt || ''}
               aria-hidden={alt ? undefined : 'true'}
-              className="h-full w-full object-cover object-[62%_center] md:object-center"
+              className={['h-full w-full object-cover', focal || 'object-[62%_center] md:object-center'].join(' ')}
               fetchpriority="high"
             />
           </picture>

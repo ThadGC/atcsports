@@ -159,9 +159,42 @@ export default function SizingGuide() {
           </div>
         )}
 
-        {/* The chart itself, with the matched column marked */}
-        <div className="mt-8 -mx-6 overflow-x-auto px-6 sm:-mx-8 sm:px-8">
-          <table className="w-full min-w-[34rem] border-collapse text-[0.88rem]">
+        {/* The chart. Stacked cards on a phone, where a wide table would mean sideways
+            scrolling; the real table from sm up, where it fits. */}
+        <ul className="mt-8 grid gap-2 sm:hidden">
+          {group.sizes.map((sz, i) => {
+            const hit = match?.index === i
+            return (
+              <li
+                key={sz.code}
+                className={[
+                  'flex items-center justify-between gap-4 rounded-xl border px-4 py-3',
+                  hit ? 'border-gold/55 bg-gold/10' : 'border-white/10 bg-white/[0.02]',
+                ].join(' ')}
+              >
+                <span className="flex items-baseline gap-2">
+                  <span className={['font-display text-lg tracking-wide', hit ? 'text-gold' : 'text-white'].join(' ')}>
+                    {sz.code}
+                  </span>
+                  {sz.us && <span className="text-[0.72rem] text-white/40">US {sz.us}</span>}
+                </span>
+                <span className="flex gap-4 text-right text-[0.82rem] tabular-nums">
+                  {measures.map((m) => (
+                    <span key={m}>
+                      <span className="block text-[0.62rem] uppercase tracking-[0.14em] text-white/38">{m}</span>
+                      <span className={m === active ? 'font-semibold text-gold' : 'text-white/70'}>
+                        {group.rows[m][i]}
+                      </span>
+                    </span>
+                  ))}
+                </span>
+              </li>
+            )
+          })}
+        </ul>
+
+        <div className="mt-8 hidden sm:block">
+          <table className="w-full border-collapse text-[0.88rem]">
             <caption className="pb-3 text-left text-[0.63rem] font-bold uppercase tracking-[0.2em] text-white/42">
               {group.label}
               {group.sub ? ` · ${group.sub}` : ''} · inches

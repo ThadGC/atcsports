@@ -1,10 +1,11 @@
+import { useState } from 'react'
 import { gallery } from '../data/site.js'
+import Lightbox from './Lightbox.jsx'
 
-// Game day collage. Tightly packed, mixed sizes, small gaps, and no stretched rows.
+// Game day collage. Tightly packed, mixed sizes, small gaps, no stretched rows.
 //
 // Rows are a fixed height and each tile spans a set number of them, so the varied
-// shapes come from the spans rather than from rows stretching to fill leftover space,
-// which is what opened the gaps.
+// shapes come from the spans rather than from rows stretching to fill leftover space.
 //
 //   mobile  2 columns, tall and wide tiles alternating
 //   desktop 6 columns x 2 rows, which the seven photos fill exactly and which sits
@@ -22,22 +23,43 @@ const PLACE = [
 ]
 
 export default function Gallery() {
+  const [open, setOpen] = useState(null)
+  const step = (d) => setOpen((i) => (i === null ? null : (i + d + gallery.length) % gallery.length))
+
   return (
-    <div className="grid auto-rows-[4.75rem] grid-cols-2 gap-1.5 sm:auto-rows-[6rem] sm:gap-2 lg:h-[clamp(24rem,56vh,32rem)] lg:auto-rows-fr lg:grid-cols-6 lg:grid-rows-2 lg:gap-2">
-      {gallery.map((g, i) => (
-        <figure
-          key={g.src}
-          className={['group relative m-0 overflow-hidden rounded-lg', PLACE[i]].join(' ')}
-        >
-          <img
-            src={g.src}
-            alt={g.alt}
-            loading={i < 3 ? 'eager' : 'lazy'}
-            className="h-full w-full object-cover transition-transform duration-[1100ms] ease-swift group-hover:scale-105"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent opacity-60 transition-opacity duration-700 group-hover:opacity-15" />
-        </figure>
-      ))}
-    </div>
+    <>
+      <div className="grid auto-rows-[4.75rem] grid-cols-2 gap-1.5 sm:auto-rows-[6rem] sm:gap-2 lg:h-[clamp(24rem,56vh,32rem)] lg:auto-rows-fr lg:grid-cols-6 lg:grid-rows-2 lg:gap-2">
+        {gallery.map((g, i) => (
+          <button
+            key={g.src}
+            type="button"
+            onClick={() => setOpen(i)}
+            aria-label={`View photo: ${g.alt}`}
+            className={[
+              'group relative m-0 overflow-hidden rounded-lg p-0',
+              PLACE[i],
+            ].join(' ')}
+          >
+            <img
+              src={g.src}
+              alt={g.alt}
+              loading={i < 3 ? 'eager' : 'lazy'}
+              className={[
+                'h-full w-full object-cover transition-transform duration-[1100ms] ease-swift group-hover:scale-105',
+                g.pos || '',
+              ].join(' ')}
+            />
+            <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent opacity-60 transition-opacity duration-700 group-hover:opacity-15" />
+          </button>
+        ))}
+      </div>
+
+      <Lightbox
+        photo={open === null ? null : gallery[open]}
+        onClose={() => setOpen(null)}
+        onPrev={() => step(-1)}
+        onNext={() => step(1)}
+      />
+    </>
   )
 }

@@ -75,7 +75,7 @@ export default function Contact() {
         alt="ATC Sports athletes competing during a Saturday league game"
       />
 
-      <Section>
+      <Section className="!pt-10 sm:!pt-16 lg:!pt-24">
         <div className="shell grid gap-4 sm:gap-5 lg:grid-cols-12">
           {/* Form */}
           <Reveal className="lg:col-span-7">

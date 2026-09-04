@@ -9,7 +9,7 @@ export default function AuthShell({ eyebrow, title, accent, lead, children, asid
   return (
     <section className="relative min-h-[100dvh] overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-36">
       <div className="absolute inset-0">
-        <img src={image} alt={alt || ''} aria-hidden={alt ? undefined : 'true'} className="h-full w-full object-cover" />
+        <img src={image} alt={alt || ''} aria-hidden={alt ? undefined : 'true'} className="h-full w-full object-cover object-[center_18%]" />
         <div className="absolute inset-0 bg-ink/92" />
         <div className="stadium-glow absolute inset-0" />
       </div>
@@ -17,10 +17,7 @@ export default function AuthShell({ eyebrow, title, accent, lead, children, asid
       <div className="shell relative grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
         <div className="lg:col-span-5">
           <Reveal>
-            <Link to="/" className="inline-flex min-h-[44px] items-center" aria-label={`${org.name} home`}>
-              <img src="/img/logo-wide.png" alt="" width="220" height="34" className="h-9 w-auto" />
-            </Link>
-            <span className="eyebrow mt-7">
+            <span className="eyebrow">
               {eyebrow}
             </span>
             <h1 className="mt-5 font-display t-h1 display-skew">
