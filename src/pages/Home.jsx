@@ -68,7 +68,11 @@ export default function Home() {
           <div className="stadium-glow absolute inset-0 opacity-70" />
         </div>
 
-        <div className="shell relative flex min-h-[100dvh] flex-col justify-end pb-14 pt-32 sm:pb-20 sm:pt-36 md:justify-start md:pb-24 md:pt-[20vh] lg:justify-center lg:pt-36">
+        {/* Phones anchor the block to the top, not the bottom. The mobile crop fills the
+            frame by height, so the athlete's hairline always lands at ~18% of it; 15.5dvh of
+            top padding parks the eyebrow just above his head at any phone height. Bottom
+            anchoring made that gap drift with however the paragraph happened to wrap. */}
+        <div className="shell relative flex min-h-[100dvh] flex-col justify-start pb-14 pt-[15.5dvh] sm:justify-end sm:pb-20 sm:pt-36 md:justify-start md:pb-24 md:pt-[20vh] lg:justify-center lg:pt-36">
           <div className="max-w-4xl lg:pl-10 xl:pl-16">
             <Reveal y={26}>
               <span className="eyebrow eyebrow--live">
@@ -96,7 +100,7 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={310}>
-              <div className="mt-9 flex flex-col gap-3 [&>a]:justify-center xs:flex-row xs:flex-wrap xs:[&>a]:justify-start" data-hero-cta>
+              <div className="mt-9 flex flex-col gap-3 xs:flex-row xs:flex-wrap" data-hero-cta>
                 <Button to="/register">Register your athlete</Button>
                 <Button to="/flag-football" variant="ghost" icon="calendar">
                   See the Winter season

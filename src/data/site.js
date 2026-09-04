@@ -186,6 +186,9 @@ export const camp = {
   dates: 'June 20 and June 27',
   time: '9:00 AM to 11:00 AM',
   location: 'Mahany Football Fields',
+  // Both taken verbatim from the camp announcement ATC publishes on atcfootball.com.
+  cost: '$40 per day · $70 for both days',
+  who: 'Kindergarten to 8th Grade',
   partners: ['ATC Sports', 'Football Phenoms', 'Dynamic Training'],
   pillars: [
     'Speed & Explosiveness',

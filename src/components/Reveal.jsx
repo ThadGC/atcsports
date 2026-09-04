@@ -14,6 +14,10 @@ export default function Reveal({
 }) {
   const ref = useRef(null)
   const [shown, setShown] = useState(false)
+  // Once the entry animation is over, drop the transform and filter entirely. Either
+  // one creates a stacking context, which traps anything absolutely positioned inside
+  // (a dropdown panel, a tooltip) beneath later siblings on the page.
+  const [settled, setSettled] = useState(false)
 
   useEffect(() => {
     const el = ref.current
@@ -25,6 +29,7 @@ export default function Reveal({
 
     if (reduce || typeof IntersectionObserver === 'undefined') {
       setShown(true)
+      setSettled(true)
       return
     }
 
@@ -49,7 +54,7 @@ export default function Reveal({
     io.observe(el)
 
     // Failsafe: never leave content stuck at opacity 0.
-    const failsafe = window.setTimeout(() => setShown(true), 2500)
+    const failsafe = window.setTimeout(() => { setShown(true); setSettled(true) }, 2500)
 
     return () => {
       io.disconnect()
@@ -61,11 +66,14 @@ export default function Reveal({
     <Tag
       ref={ref}
       className={className}
+      onTransitionEnd={() => shown && setSettled(true)}
       style={{
-        transform: shown ? 'translate3d(0,0,0)' : `translate3d(0,${y}px,0)`,
+        transform: settled ? undefined : shown ? 'translate3d(0,0,0)' : `translate3d(0,${y}px,0)`,
         opacity: shown ? 1 : 0,
-        filter: shown ? 'blur(0px)' : 'blur(10px)',
-        transition: `transform 900ms cubic-bezier(0.32,0.72,0,1) ${delay}ms, opacity 900ms cubic-bezier(0.32,0.72,0,1) ${delay}ms, filter 900ms cubic-bezier(0.32,0.72,0,1) ${delay}ms`,
+        filter: settled ? undefined : shown ? 'blur(0px)' : 'blur(10px)',
+        transition: settled
+          ? undefined
+          : `transform 900ms cubic-bezier(0.32,0.72,0,1) ${delay}ms, opacity 900ms cubic-bezier(0.32,0.72,0,1) ${delay}ms, filter 900ms cubic-bezier(0.32,0.72,0,1) ${delay}ms`,
         willChange: shown ? 'auto' : 'transform, opacity',
       }}
     >

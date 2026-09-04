@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { navFlat, org, venues } from '../data/site.js'
 import Icon from './Icon.jsx'
 
 export default function Footer() {
   const year = new Date().getFullYear()
+  const { pathname } = useLocation()
 
   return (
     <footer className="relative overflow-hidden border-t border-white/8 bg-ink-800">
@@ -12,7 +13,18 @@ export default function Footer() {
       <div className="shell relative py-16 md:py-20">
         <div className="grid grid-cols-2 gap-x-6 gap-y-11 md:grid-cols-4 md:gap-y-12 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-0">
           <div className="col-span-2 md:col-span-4 lg:col-span-3">
-            <Link to="/" aria-label={`${org.name} home`} className="inline-block">
+            {/* Same as the nav logo: already on home, the pathname never changes, so
+                the effect that normally resets the scroll never runs. Do it here. */}
+            <Link
+              to="/"
+              onClick={() => {
+                if (pathname !== '/') return
+                const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+                window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' })
+              }}
+              aria-label={`${org.name} home`}
+              className="inline-block"
+            >
               <img
                 src="/img/logo-wide.png"
                 alt={`${org.name} logo`}
@@ -49,7 +61,10 @@ export default function Footer() {
                 <h2
                   className={[
                     'text-[0.66rem] font-bold uppercase tracking-[0.24em] text-gold/85',
-                    col === 1 ? 'md:opacity-0' : '',
+                    // Column two's heading is a spacer that keeps both lists starting on
+                    // the same line. It must stay invisible at every width: below md it
+                    // was showing, so phones read "Programs" twice side by side.
+                    col === 1 ? 'opacity-0' : '',
                   ].join(' ')}
                   aria-hidden={col === 1 ? 'true' : undefined}
                 >

@@ -60,11 +60,13 @@ export default function Camps() {
             <SectionHead eyebrow="Camp details" title={camp.name} />
 
             <Reveal delay={120}>
-              <dl className="mt-9 grid gap-4 xs:grid-cols-3">
+              <dl className="mt-9 grid gap-4 xs:grid-cols-2 sm:grid-cols-3">
                 {[
                   ['calendar', 'Dates', camp.dates],
                   ['clock', 'Time', camp.time],
                   ['pin', 'Location', camp.location],
+                  ['check', 'Cost', camp.cost],
+                  ['users', 'Who', camp.who],
                 ].map(([icon, label, value]) => (
                   <div key={label}>
                     <Bezel className="h-full">

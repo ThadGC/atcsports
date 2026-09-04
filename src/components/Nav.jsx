@@ -53,9 +53,18 @@ export default function Nav() {
                 : 'mt-4 py-2.5 pl-4 pr-2.5 sm:mt-6 sm:pl-6',
             ].join(' ')}
           >
-            {/* Clickable logo → home */}
+            {/* Clickable logo → home. From another page the router handles it: the
+                pathname effects reset the scroll and close the menu. Already on home,
+                the pathname never changes, so nothing fires and the click looks dead.
+                Do both jobs here for that case. */}
             <Link
               to="/"
+              onClick={() => {
+                if (pathname !== '/') return
+                setOpen(false)
+                const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+                window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' })
+              }}
               className="flex min-h-[44px] shrink-0 items-center rounded-full transition-opacity duration-500 hover:opacity-80"
               aria-label={`${org.name} home`}
             >

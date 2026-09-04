@@ -5,6 +5,7 @@ import Reveal from '../components/Reveal.jsx'
 import Button from '../components/Button.jsx'
 import Icon from '../components/Icon.jsx'
 import Bezel from '../components/Bezel.jsx'
+import Select from '../components/Select.jsx'
 import PageHero from '../components/PageHero.jsx'
 import { Section, SectionHead } from '../components/Section.jsx'
 
@@ -150,18 +151,14 @@ export default function Schedule() {
           />
 
           <Reveal>
-            <div className="mt-9">
-              <label htmlFor="division-filter" className="block text-[0.63rem] font-bold uppercase tracking-[0.2em] text-gold/85">
-                Filter by division
-              </label>
-              <select
+            <div className="mt-9 max-w-md">
+              <Select
                 id="division-filter"
+                label="Filter by division"
                 value={division}
-                onChange={(e) => setDivision(e.target.value)}
-                className="field mt-3 min-h-[44px] max-w-md"
-              >
-                {DIVISIONS.map((d) => <option key={d} value={d} className="bg-ink-700">{d}</option>)}
-              </select>
+                onChange={setDivision}
+                options={DIVISIONS}
+              />
             </div>
           </Reveal>
 

@@ -8,6 +8,7 @@ import Reveal from '../components/Reveal.jsx'
 import Button from '../components/Button.jsx'
 import Icon from '../components/Icon.jsx'
 import Bezel from '../components/Bezel.jsx'
+import Select from '../components/Select.jsx'
 import Field, { Notice } from '../components/Field.jsx'
 import { Section } from '../components/Section.jsx'
 
@@ -210,22 +211,14 @@ export default function Account() {
                         />
                       </div>
 
-                      <div>
-                        <label htmlFor="division" className="mb-2 block text-[0.78rem] font-bold tracking-wide text-white/78">
-                          Division
-                        </label>
-                        <select
-                          id="division" name="division" value={form.division}
-                          onChange={set('division')} className="field min-h-[3rem]"
-                        >
-                          {ALL_DIVISIONS.map((d) => (
-                            <option key={d} value={d} className="bg-ink-700">{d}</option>
-                          ))}
-                        </select>
-                        <p className="mt-2 text-[0.78rem] text-white/38">
-                          Go by the grade they are currently in.
-                        </p>
-                      </div>
+                      <Select
+                        id="division"
+                        label="Division"
+                        value={form.division}
+                        onChange={(v) => setForm((f) => ({ ...f, division: v }))}
+                        options={ALL_DIVISIONS}
+                        hint="Go by the grade they are currently in."
+                      />
 
                       <Field
                         label="Friend or coach request" name="notes" value={form.notes}

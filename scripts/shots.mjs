@@ -25,6 +25,8 @@ for (const vp of VIEWPORTS) {
     if (m.type() !== 'error') return
     if (t.includes('ERR_CONNECTION_REFUSED')) return
     if (/status of 404/.test(t)) return
+    // Our own rate limiter, tripped by running the suites repeatedly. Not a page bug.
+    if (/status of 429/.test(t)) return
     errors.push(t.slice(0, 160))
   })
   page.on('pageerror', (e) => errors.push('PAGEERROR: ' + e.message.slice(0, 160)))

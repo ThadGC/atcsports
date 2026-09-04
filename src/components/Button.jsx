@@ -17,7 +17,7 @@ export default function Button({
   const cls = [
     'group btn',
     variant === 'gold' ? 'btn-gold' : 'btn-ghost',
-    full ? 'w-full justify-center' : '',
+    full ? 'w-full' : '',
     disabled ? 'opacity-55 pointer-events-none' : '',
     className,
   ]

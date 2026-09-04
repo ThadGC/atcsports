@@ -5,6 +5,7 @@ import Reveal from '../components/Reveal.jsx'
 import Button from '../components/Button.jsx'
 import Icon from '../components/Icon.jsx'
 import Bezel from '../components/Bezel.jsx'
+import Select from '../components/Select.jsx'
 import PageHero from '../components/PageHero.jsx'
 import { Section, SectionHead } from '../components/Section.jsx'
 
@@ -43,18 +44,14 @@ export default function Standings() {
           <SectionHead eyebrow="By division" title="Pick a division" />
 
           <Reveal>
-            <div className="mt-8">
-              <label htmlFor="standings-division" className="block text-[0.63rem] font-bold uppercase tracking-[0.2em] text-gold/85">
-                Division
-              </label>
-              <select
+            <div className="mt-8 max-w-md">
+              <Select
                 id="standings-division"
+                label="Division"
                 value={key}
-                onChange={(e) => setKey(e.target.value)}
-                className="field mt-3 min-h-[44px] max-w-md"
-              >
-                {KEYS.map((k) => <option key={k} value={k} className="bg-ink-700">{k}</option>)}
-              </select>
+                onChange={setKey}
+                options={KEYS}
+              />
             </div>
           </Reveal>
 

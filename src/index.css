@@ -306,6 +306,9 @@
   .btn {
     display: inline-flex;
     align-items: center;
+    /* Centre always. An auto-width button is filled by its own content so this changes
+       nothing there; a stretched one centres instead of hugging the left edge. */
+    justify-content: center;
     gap: 0.65rem;
     border-radius: 9999px;
     font-weight: 700;
