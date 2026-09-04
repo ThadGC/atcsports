@@ -1,0 +1,624 @@
+<title>ATC Sports Brand Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+
+<style>
+  :root {
+    --ink:      #050505;
+    --ink-800:  #0A0A0B;
+    --ink-700:  #101012;
+    --ink-600:  #17171A;
+    --ink-500:  #202024;
+    --gold:     #D9B86C;
+    --gold-lite:#F0DCA8;
+    --gold-500: #C6A055;
+    --gold-700: #7C6335;
+    --paper:    rgba(255,255,255,0.92);
+    --muted:    rgba(255,255,255,0.56);
+    --faint:    rgba(255,255,255,0.50);
+    --line:     rgba(255,255,255,0.10);
+    --line-gold:rgba(217,184,108,0.28);
+    --display: 'Anton', Impact, system-ui, sans-serif;
+    --body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --swift: cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Type scale, taken from the site's own clamp values ---------- */
+  .d-hero { font-family: var(--display); font-size: clamp(3rem, 11vw, 7.5rem); line-height: 0.88;
+            text-transform: uppercase; transform: skewX(-7deg); margin: 0; text-wrap: balance; }
+  .d-h2   { font-family: var(--display); font-size: clamp(1.9rem, 5vw, 3.1rem); line-height: 0.95;
+            text-transform: uppercase; transform: skewX(-7deg); margin: 0; text-wrap: balance; }
+  .d-h3   { font-family: var(--display); font-size: clamp(1.25rem, 2.6vw, 1.65rem); line-height: 1;
+            text-transform: uppercase; transform: skewX(-7deg); margin: 0 0 10px; }
+
+  .metal {
+    background: linear-gradient(168deg, #F7ECD0 0%, #D9B86C 26%, #A8874A 52%, #E8D29A 74%, #C6A055 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.26em;
+    text-transform: uppercase; color: var(--gold-lite); margin: 0;
+  }
+  .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 99px; background: var(--gold); flex: none; }
+
+  p { margin: 0 0 1em; max-width: 68ch; }
+  .lead { font-size: 1.08rem; color: var(--muted); }
+  strong { color: var(--paper); font-weight: 700; }
+  a { color: var(--gold-lite); }
+
+  /* ---------- Yard line rule: the field's own marking, used as the divider ---------- */
+  .yard {
+    height: 26px; margin: 0; border: 0;
+    background-image:
+      linear-gradient(to right, var(--line-gold) 1px, transparent 1px),
+      linear-gradient(to right, var(--line) 1px, transparent 1px);
+    background-size: 100px 26px, 20px 10px;
+    background-position: 0 0, 0 8px;
+    background-repeat: repeat-x;
+    opacity: 0.85;
+  }
+
+  section { padding: 62px 0; border-top: 1px solid var(--line); }
+  section:first-of-type { border-top: 0; }
+
+  .sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 26px; }
+  .sec-num {
+    font-family: var(--display); font-size: 1rem; color: var(--gold-500);
+    letter-spacing: 0.08em; flex: none; padding-top: 4px;
+  }
+
+  .grid { display: grid; gap: 18px; }
+  .g2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .g3 { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+  .g4 { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+
+  /* ---------- Swatches ---------- */
+  .sw { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--ink-800); }
+  .sw-chip { height: 92px; }
+  .sw-meta { padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; }
+  .sw-name { font-weight: 700; font-size: 0.9rem; }
+  .sw-hex { font-size: 0.8rem; color: var(--faint); font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
+  .sw-use { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+
+  /* ---------- Panels ---------- */
+  .panel {
+    border: 1px solid var(--line); border-radius: 18px;
+    background: linear-gradient(160deg, rgba(217,184,108,0.07), rgba(255,255,255,0.015) 60%);
+    padding: 22px 24px;
+  }
+  .panel h4 { margin: 0 0 8px; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 800; }
+  .panel p:last-child { margin-bottom: 0; }
+
+  /* ---------- Tables ---------- */
+  .tw { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; min-width: 460px; }
+  caption { text-align: left; padding: 14px 16px 0; font-size: 0.72rem; letter-spacing: 0.18em;
+            text-transform: uppercase; color: var(--gold); font-weight: 800; }
+  th, td { padding: 10px 16px; text-align: left; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  thead th { border-top: 0; color: var(--faint); font-weight: 700; font-size: 0.72rem;
+             letter-spacing: 0.14em; text-transform: uppercase; }
+  tbody th { color: var(--paper); font-weight: 700; }
+
+  /* ---------- Do / Don't ---------- */
+  .rule { border-left: 2px solid var(--gold); padding: 2px 0 2px 16px; }
+  .rule.no { border-left-color: var(--gold-700); }
+  .rule h5 { margin: 0 0 4px; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+             color: var(--gold); font-weight: 800; }
+  .rule.no h5 { color: var(--faint); }
+  .rule p { margin: 0; font-size: 0.93rem; color: var(--muted); }
+  .rule p em { color: var(--paper); font-style: normal; }
+
+  .tag {
+    display: inline-block; font-size: 0.6rem; font-weight: 800; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink); background: var(--gold);
+    padding: 3px 8px; border-radius: 99px; vertical-align: 3px; margin-left: 10px;
+  }
+
+  ul.clean { margin: 0; padding-left: 18px; color: var(--muted); }
+  ul.clean li { margin-bottom: 6px; }
+  ul.clean li::marker { color: var(--gold-700); }
+
+  .stat { border-left: 1px solid var(--line-gold); padding-left: 14px; }
+  .stat dt { font-family: var(--display); font-size: 1.7rem; color: var(--gold); }
+  .stat dd { margin: 2px 0 0; font-size: 0.66rem; letter-spacing: 0.16em;
+             text-transform: uppercase; color: var(--faint); }
+
+  .cover { padding: 96px 0 54px; }
+  .cover .kicker { color: var(--gold); font-size: 0.74rem; letter-spacing: 0.28em;
+                   text-transform: uppercase; font-weight: 800; margin: 0 0 22px; }
+  .cover .by { margin-top: 34px; font-size: 0.82rem; color: var(--faint); letter-spacing: 0.02em; }
+
+  .toc { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 10px 26px; margin-top: 8px; }
+  .toc a { display: flex; gap: 12px; text-decoration: none; color: var(--muted); font-size: 0.9rem;
+           padding: 7px 0; border-bottom: 1px solid var(--line); transition: color 300ms var(--swift); }
+  .toc a:hover { color: var(--gold-lite); }
+  .toc span { color: var(--gold-500); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  footer { padding: 42px 0 64px; color: var(--faint); font-size: 0.82rem; border-top: 1px solid var(--line); }
+
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+  @media print {
+    :root { --paper: rgba(255,255,255,0.95); }
+    /* The PDF is rendered with zero page margin so the ink ground bleeds to the paper
+       edge. The wrap's own padding becomes the margin instead. */
+    body { print-color-adjust: exact; -webkit-print-color-adjust: exact; background: var(--ink); }
+    .wrap { padding: 0 16mm; max-width: none; }
+    /* Sections flow across pages so paper fills; only the cards, swatches and tables
+       are kept whole, since a card split down its middle is what actually reads badly. */
+    section { padding: 30px 0; }
+    .sec-head { break-after: avoid; }
+    .cover { page-break-after: always; padding: 40mm 0 0; }
+    .d-hero { font-size: 4.6rem; }
+    .panel, .sw, .tw { break-inside: avoid; }
+    a { text-decoration: none; }
+    footer { padding-bottom: 20mm; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="cover">
+    <p class="kicker">Brand Guidelines &middot; Winter 2026</p>
+    <h1 class="d-hero">ATC<br><span class="metal">Sports</span></h1>
+    <p class="lead" style="margin-top:26px;max-width:56ch">
+      Youth flag football, 7-on-7 and skills camps in Roseville, California.
+      This document records how the brand looks, sounds and behaves, so anyone
+      building for ATC produces the same thing twice.
+    </p>
+    <p class="by">Prepared by Apex Growth for ATC Sports. President: AJ Barnett.</p>
+  </header>
+
+  <hr class="yard">
+
+  <section id="contents" style="border-top:0;padding-top:40px">
+    <p class="eyebrow">Contents</p>
+    <nav class="toc">
+      <a href="#positioning"><span>01</span> Positioning</a>
+      <a href="#logo"><span>02</span> Logo and wordmark</a>
+      <a href="#colour"><span>03</span> Colour</a>
+      <a href="#type"><span>04</span> Typography</a>
+      <a href="#surfaces"><span>05</span> Surfaces and motion</a>
+      <a href="#photo"><span>06</span> Photography</a>
+      <a href="#uniform"><span>07</span> The uniform</a>
+      <a href="#voice"><span>08</span> Voice</a>
+      <a href="#components"><span>09</span> Components</a>
+      <a href="#facts"><span>10</span> The facts of the league</a>
+    </nav>
+  </section>
+
+  <!-- 01 -->
+  <section id="positioning">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <div>
+        <h2 class="d-h2">Positioning <span class="tag">Proposed</span></h2>
+      </div>
+    </div>
+    <p class="lead">
+      Everything in this section is a recommendation from Apex Growth, drawn from how ATC
+      already presents itself. It is not yet client approved. Every other section in this
+      document records something that already exists.
+    </p>
+
+    <div class="grid g2" style="margin-top:26px">
+      <div class="panel">
+        <h4>The promise</h4>
+        <p>Competitive football that respects the family's Saturday. Practice and game run
+        back to back on one field, one morning, so a season costs a parent nine mornings
+        rather than a rearranged week.</p>
+      </div>
+      <div class="panel">
+        <h4>The tension it resolves</h4>
+        <p>Parents are told they must choose between a serious program and a manageable one.
+        ATC's format refuses that trade. Real turf, real officials, ten player rosters.</p>
+      </div>
+    </div>
+
+    <div class="grid g4" style="margin-top:26px">
+      <div class="rule"><h5>Earned</h5><p>Nothing is claimed that the league cannot deliver on a Saturday.</p></div>
+      <div class="rule"><h5>Direct</h5><p>Plain sentences. A parent gets the answer without decoding it.</p></div>
+      <div class="rule"><h5>Competitive</h5><p>The tagline is Built To Compete. The brand never softens into participation language.</p></div>
+      <div class="rule"><h5>Local</h5><p>Roseville and Rocklin by name. Whitney High and Mahany Park, not "our venues".</p></div>
+    </div>
+  </section>
+
+  <hr class="yard">
+
+  <!-- 02 -->
+  <section id="logo">
+    <div class="sec-head"><span class="sec-num">02</span><h2 class="d-h2">Logo and wordmark</h2></div>
+    <p>The mark is the ATC monogram in metallic gold with a hard italic thrust, followed by
+    SPORTS in flat white. It always sits on a dark ground. There is no approved light
+    ground version.</p>
+
+    <div class="grid g2" style="margin-top:22px">
+      <div class="rule">
+        <h5>Clear space</h5>
+        <p>Keep clear space on all sides equal to the height of the S in SPORTS. In the site
+        header the mark sits at <em>24px to 32px</em> tall depending on breakpoint.</p>
+      </div>
+      <div class="rule">
+        <h5>Minimum size</h5>
+        <p>Do not reproduce below <em>96px wide</em>. Below that the monogram's inner
+        counters close up and the metallic gradient reads as flat brown.</p>
+      </div>
+      <div class="rule no">
+        <h5>Never</h5>
+        <p>Do not recolour the monogram flat gold, place it on white, add a drop shadow,
+        stretch it, or separate ATC from SPORTS.</p>
+      </div>
+      <div class="rule no">
+        <h5>A practical note</h5>
+        <p>The supplied wide PNG carried <em>235px of transparent padding on its left edge</em>,
+        about a fifth of the file. Any new export must be alpha trimmed before use or it will
+        never optically align.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="yard">
+
+  <!-- 03 -->
+  <section id="colour">
+    <div class="sec-head"><span class="sec-num">03</span><h2 class="d-h2">Colour</h2></div>
+    <p>Two families only. A near black ink that carries everything, and a single gold used
+    as the accent. There is no third brand colour, and adding one is the fastest way to
+    make an ATC surface stop looking like ATC.</p>
+
+    <div class="grid g4" style="margin-top:24px">
+      <div class="sw"><div class="sw-chip" style="background:#050505;border-bottom:1px solid var(--line)"></div>
+        <div class="sw-meta"><span class="sw-name">Ink</span><span class="sw-hex">#050505</span>
+        <span class="sw-use">Page ground. The default everywhere.</span></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#0A0A0B"></div>
+        <div class="sw-meta"><span class="sw-name">Ink 800</span><span class="sw-hex">#0A0A0B</span>
+        <span class="sw-use">Raised panels, footer.</span></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#101012"></div>
+        <div class="sw-meta"><span class="sw-name">Ink 700</span><span class="sw-hex">#101012</span>
+        <span class="sw-use">Cards, menu grounds.</span></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#17171A"></div>
+        <div class="sw-meta"><span class="sw-name">Ink 600</span><span class="sw-hex">#17171A</span>
+        <span class="sw-use">Inputs, table stripes.</span></div></div>
+    </div>
+
+    <div class="grid g4" style="margin-top:14px">
+      <div class="sw"><div class="sw-chip" style="background:#F0DCA8"></div>
+        <div class="sw-meta"><span class="sw-name">Gold Lite</span><span class="sw-hex">#F0DCA8</span>
+        <span class="sw-use">Eyebrow labels, small caps on dark.</span></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#D9B86C"></div>
+        <div class="sw-meta"><span class="sw-name">Gold</span><span class="sw-hex">#D9B86C</span>
+        <span class="sw-use">The accent. Primary buttons, rules, icons.</span></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#C6A055"></div>
+        <div class="sw-meta"><span class="sw-name">Gold 500</span><span class="sw-hex">#C6A055</span>
+        <span class="sw-use">Gradient mid tone, pressed states.</span></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#7C6335"></div>
+        <div class="sw-meta"><span class="sw-name">Gold 700</span><span class="sw-hex">#7C6335</span>
+        <span class="sw-use">Section numbers, dim marks. Never body text.</span></div></div>
+    </div>
+
+    <div class="grid g2" style="margin-top:26px">
+      <div class="panel">
+        <h4>The metal gradient</h4>
+        <p>Display headings use a five stop gradient clipped to the text, never a flat gold:</p>
+        <p style="font-size:0.82rem;color:var(--faint);font-variant-numeric:tabular-nums">
+          168deg &middot; #F7ECD0 0% &middot; #D9B86C 26% &middot; #A8874A 52% &middot; #E8D29A 74% &middot; #C6A055 100%
+        </p>
+        <p>The light stop at 74 percent is what reads as a specular highlight. Removing it
+        makes the type look muddy.</p>
+      </div>
+      <div class="panel">
+        <h4>Contrast</h4>
+        <p>Gold <strong>#D9B86C</strong> on ink <strong>#050505</strong> passes comfortably for
+        body and large text. The reverse, ink on gold, is the pairing used for primary
+        buttons and is the only approved inversion.</p>
+        <p>Gold 700 is a structural colour. It fails contrast as body text and must stay on
+        numerals, rules and dim marks.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="yard">
+
+  <!-- 04 -->
+  <section id="type">
+    <div class="sec-head"><span class="sec-num">04</span><h2 class="d-h2">Typography</h2></div>
+
+    <div class="grid g2">
+      <div class="panel">
+        <h4>Display &middot; Anton</h4>
+        <p style="font-family:var(--display);font-size:2.6rem;line-height:0.95;transform:skewX(-7deg);text-transform:uppercase;margin:6px 0 14px">Built To Compete</p>
+        <p>Always uppercase. Always skewed <strong>7 degrees</strong> on the X axis. That skew is
+        the single most recognisable thing about the brand's type and it is not optional.
+        Fallback stack: Impact, system-ui.</p>
+      </div>
+      <div class="panel">
+        <h4>Body &middot; Plus Jakarta Sans</h4>
+        <p style="font-size:1.15rem;margin:6px 0 14px">Practice runs the hour before your kid's
+        game, on the same field, same morning.</p>
+        <p>Weights 400 to 800. Never skewed, never all caps except in the small label style.
+        Body copy sits at roughly <strong>65 characters</strong> per line.</p>
+      </div>
+    </div>
+
+    <div class="tw" style="margin-top:24px">
+      <table>
+        <caption>Fluid scale, as built</caption>
+        <thead><tr><th>Role</th><th>Minimum</th><th>Fluid</th><th>Maximum</th></tr></thead>
+        <tbody>
+          <tr><th>Hero</th><td>2.85rem</td><td>10.5vw</td><td>9.5rem</td></tr>
+          <tr><th>H1</th><td>2.35rem</td><td>7vw</td><td>5.75rem</td></tr>
+          <tr><th>H2</th><td>1.9rem</td><td>5vw</td><td>3.75rem</td></tr>
+          <tr><th>H3</th><td>1.45rem</td><td>3.2vw</td><td>2.25rem</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel" style="margin-top:20px">
+      <h4>The label style</h4>
+      <p class="eyebrow" style="margin:8px 0 12px">Winter 2026 &middot; Registration open</p>
+      <p>A gold dot, then uppercase at <strong>0.66rem</strong>, weight 700, letter spacing
+      <strong>0.26em</strong>. No pill, no border, no fill. It marks a section; it is never a button.</p>
+    </div>
+  </section>
+
+  <hr class="yard">
+
+  <!-- 05 -->
+  <section id="surfaces">
+    <div class="sec-head"><span class="sec-num">05</span><h2 class="d-h2">Surfaces and motion</h2></div>
+
+    <div class="grid g3">
+      <div class="panel">
+        <h4>Bezel</h4>
+        <p>The card treatment. A 6px outer tray carrying a gold tinted gradient, wrapping an
+        inner plate. Radius <strong>2rem</strong>. It reads as machined metal, not as a
+        drop shadow.</p>
+      </div>
+      <div class="panel">
+        <h4>Glass</h4>
+        <p>The floating navigation bar. Ground at 72 percent opacity with
+        <strong>blur(22px) saturate(150%)</strong>. Menu panels go to 97 percent, because a
+        dropdown over live content has to stay readable.</p>
+      </div>
+      <div class="panel">
+        <h4>Stadium glow</h4>
+        <p>Three radial gradients of gold at 20, 12 and 8 percent, placed top left, top right
+        and bottom centre. It suggests floodlights without ever showing one.</p>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:22px">
+      <div class="rule">
+        <h5>Easing</h5>
+        <p>Everything moves on <em>cubic-bezier(0.32, 0.72, 0, 1)</em>, typically 500ms to
+        700ms. It starts fast and settles slowly. A spring curve exists for playful moments
+        and is used sparingly.</p>
+      </div>
+      <div class="rule no">
+        <h5>Never</h5>
+        <p>Do not animate a decorative pseudo element with <em>translate(100%)</em>. Sweeps
+        animate <em>background-position</em>. A single stray keyframe of this kind once added
+        1350px of horizontal scroll to every page on the site.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="yard">
+
+  <!-- 06 -->
+  <section id="photo">
+    <div class="sec-head"><span class="sec-num">06</span><h2 class="d-h2">Photography</h2></div>
+    <p>Every image is a real ATC Saturday. No stock, no staged studio work, no composites of
+    children who never played in this league.</p>
+
+    <div class="grid g2" style="margin-top:20px">
+      <div class="rule">
+        <h5>What to shoot</h5>
+        <p>The moment of contest: a flag being pulled, a receiver securing a catch, a
+        quarterback setting his feet. Coaches belong in frame, on the sideline, watching.</p>
+      </div>
+      <div class="rule">
+        <h5>Treatment</h5>
+        <p>Warm afternoon light, deep shadows, the black and gold kit carrying the colour.
+        Images sit under a black wash of <em>82 to 90 percent</em> when used as a backdrop, so
+        they read as depth rather than as a photograph.</p>
+      </div>
+      <div class="rule no">
+        <h5>Cropping</h5>
+        <p>A phone hero fits a wide photo <em>by height</em>, so it crops sideways only.
+        Vertical framing has to be solved in the source file, not with CSS.</p>
+      </div>
+      <div class="rule no">
+        <h5>Never</h5>
+        <p>No promotional flyers in a gallery of game day photography. No child identifiable
+        by name alongside their image without a parent's consent.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="yard">
+
+  <!-- 07 -->
+  <section id="uniform">
+    <div class="sec-head"><span class="sec-num">07</span><h2 class="d-h2">The uniform</h2></div>
+    <p>The kit is the brand's most seen surface. It appears on a field every Saturday for
+    nine weeks, photographed by parents, long before anyone visits a web page.</p>
+
+    <div class="grid g2" style="margin-top:20px">
+      <div class="panel">
+        <h4>As worn</h4>
+        <p>Black jersey with gold trim at the V neck and shoulder, the ATC SPORTS wordmark
+        across the chest, and a large white number. Black shorts carry the wordmark on the
+        thigh. The flag belt is gold, which makes the defining moment of the sport, the pull,
+        the most visible thing in any photograph.</p>
+      </div>
+      <div class="panel">
+        <h4>How it is sold</h4>
+        <p>A lightweight premium reversible jersey with customisable name and number. It is a
+        separate one time purchase, reusable across future seasons, which keeps league fees
+        down. First season registration includes it, a stated saving of <strong>$45</strong>.</p>
+      </div>
+    </div>
+
+    <div class="tw" style="margin-top:22px">
+      <table>
+        <caption>Youth sizing &middot; body measurements in inches</caption>
+        <thead><tr><th>Size</th><th>US</th><th>Chest</th><th>Waist</th></tr></thead>
+        <tbody>
+          <tr><th>YXS</th><td>6</td><td>24 to 26</td><td>20 to 22</td></tr>
+          <tr><th>YS</th><td>7 to 8</td><td>26 to 28</td><td>22 to 24</td></tr>
+          <tr><th>YM</th><td>10 to 12</td><td>28 to 30</td><td>24 to 26</td></tr>
+          <tr><th>YL</th><td>14</td><td>30 to 32</td><td>26 to 28</td></tr>
+          <tr><th>YXL</th><td>16</td><td>33 to 34</td><td>29 to 31</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:12px;font-size:0.86rem;color:var(--faint)">
+      Chest and waist are measurements of the wearer, not the garment. Between two sizes,
+      take the larger for a looser fit. Larger, smaller and tall sizes are available on
+      request in 10 percent increments. Adult unisex and women's charts follow the same format.
+    </p>
+  </section>
+
+  <hr class="yard">
+
+  <!-- 08 -->
+  <section id="voice">
+    <div class="sec-head"><span class="sec-num">08</span><h2 class="d-h2">Voice</h2></div>
+    <p>ATC talks to a parent who is already busy and already paying. The voice is confident
+    and unhurried, and it never oversells, because the format is the argument.</p>
+
+    <div class="grid g2" style="margin-top:20px">
+      <div class="rule">
+        <h5>Write this way</h5>
+        <p><em>"Practice runs the hour before your kid's game, on the same field, same
+        morning. No weeknight driving, no second trip across town."</em></p>
+      </div>
+      <div class="rule no">
+        <h5>Not this way</h5>
+        <p><em>"We are passionate about empowering young athletes to unlock their full
+        potential through our world class developmental pathway."</em></p>
+      </div>
+    </div>
+
+    <div class="grid g3" style="margin-top:22px">
+      <div class="panel">
+        <h4>Address the parent</h4>
+        <p>Second person. "You are the one driving, paying and rearranging the weekend."
+        The athlete is "your kid", not "your athlete".</p>
+      </div>
+      <div class="panel">
+        <h4>Lead with the constraint</h4>
+        <p>Nine Saturdays. Ten players. Two fields. Numbers first, adjectives second, and
+        only adjectives the numbers have already earned.</p>
+      </div>
+      <div class="panel">
+        <h4>Two hard rules</h4>
+        <p>No em dashes or en dashes anywhere, in any ATC copy. And never state a fact about
+        the league that ATC has not published. If it cannot be delivered on a Saturday, it
+        does not go on the page.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="yard">
+
+  <!-- 09 -->
+  <section id="components">
+    <div class="sec-head"><span class="sec-num">09</span><h2 class="d-h2">Components</h2></div>
+
+    <div class="grid g2">
+      <div class="panel">
+        <h4>Buttons</h4>
+        <p>Fully rounded. Gold fill for the primary action, a hairline ghost for the
+        secondary. Each carries a circular pip holding an arrow or icon, which shifts
+        <strong>4px right and 1px up</strong> on hover. Content is always centred, so a
+        stretched button never hugs its left edge.</p>
+      </div>
+      <div class="panel">
+        <h4>Minimum target</h4>
+        <p>Every interactive element is at least <strong>44px</strong> tall. This is enforced
+        by an automated sweep of the built site rather than left to review.</p>
+      </div>
+      <div class="panel">
+        <h4>Navigation</h4>
+        <p>A floating glass bar, centre aligned, that tightens as the page scrolls. Below the
+        large breakpoint it collapses to a full screen panel. The logo returns to the top of
+        the home page from anywhere.</p>
+      </div>
+      <div class="panel">
+        <h4>Sticky action bar</h4>
+        <p>On phones a Register and Call us pair pins to the bottom edge, appearing only once
+        the hero's own buttons have scrolled away, so the two never compete.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="yard">
+
+  <!-- 10 -->
+  <section id="facts">
+    <div class="sec-head"><span class="sec-num">10</span><h2 class="d-h2">The facts of the league</h2></div>
+    <p>These are the load bearing numbers. Any campaign, flyer or page reusing them should
+    take them from here, and nothing should be added to this list that ATC has not published.</p>
+
+    <dl class="grid g4" style="margin-top:24px">
+      <div class="stat"><dt>9</dt><dd>Saturdays</dd></div>
+      <div class="stat"><dt>10</dt><dd>Players per team</dd></div>
+      <div class="stat"><dt>9</dt><dd>Divisions</dd></div>
+      <div class="stat"><dt>2</dt><dd>Home fields</dd></div>
+    </dl>
+
+    <div class="grid g2" style="margin-top:26px">
+      <div class="panel">
+        <h4>Winter 2026 season</h4>
+        <p>Saturdays from <strong>14 November 2026</strong> to <strong>9 January 2027</strong>.
+        Week 3 falls on Thanksgiving weekend, week 7 is a bye for Christmas, and week 9 is the
+        championship. Games run rain or shine unless conditions force a postponement.</p>
+      </div>
+      <div class="panel">
+        <h4>Divisions</h4>
+        <p>Co-ed from Pre-K and Kindergarten through 7th and 8th grade, five bands. Girls from
+        1st and 2nd through 7th and 8th grade, four bands. Each team practises the hour before
+        its own game.</p>
+      </div>
+      <div class="panel">
+        <h4>Fields</h4>
+        <p>Whitney High School, 701 Wildcat Boulevard, Rocklin, and Mahany Park Football Field,
+        Roseville. Skills camps run at Mahany.</p>
+      </div>
+      <div class="panel">
+        <h4>Contact</h4>
+        <p>(209) 986-0460. Instagram @atcsports.roseville and Facebook ATCsportsRoseville.
+        Registration and payment run through TeamLinkt.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p style="margin:0">
+      ATC Sports Brand Guidelines, Winter 2026. Prepared by Apex Growth.
+      Section 01 is proposed and awaiting client approval. Every other section records
+      what is already built or already published by the league.
+    </p>
+  </footer>
+
+</div>
