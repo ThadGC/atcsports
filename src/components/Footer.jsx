@@ -10,8 +10,8 @@ export default function Footer() {
       <div className="stadium-glow pointer-events-none absolute inset-0 opacity-40" />
 
       <div className="shell relative py-16 md:py-20">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-10">
-          <div className="lg:col-span-4">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-11 md:grid-cols-2 lg:grid-cols-12 lg:gap-10">
+          <div className="col-span-2 lg:col-span-4">
             <Link to="/" aria-label={`${org.name} home`} className="inline-block">
               <img
                 src="/img/logo-wide.png"
@@ -41,7 +41,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="lg:col-span-2">
+          <div className="col-span-1 lg:col-span-2">
             <h2 className="text-[0.66rem] font-bold uppercase tracking-[0.24em] text-gold/85">
               Programs
             </h2>
@@ -59,7 +59,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-3">
+          <div className="col-span-1 lg:col-span-3">
             <h2 className="text-[0.66rem] font-bold uppercase tracking-[0.24em] text-gold/85">
               League Central
             </h2>
@@ -68,7 +68,6 @@ export default function Footer() {
                 ['Schedule', org.live.schedule],
                 ['Scores', org.live.scores],
                 ['Standings', org.live.standings],
-                ['Photo albums', org.live.photos],
                 ['Registration portal', org.registerUrl],
               ].map(([label, href]) => (
                 <li key={label}>
@@ -90,7 +89,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-3">
+          <div className="col-span-2 text-center lg:col-span-3 lg:text-left">
             <h2 className="text-[0.66rem] font-bold uppercase tracking-[0.24em] text-gold/85">
               Get In Touch
             </h2>
@@ -98,7 +97,7 @@ export default function Footer() {
               <li>
                 <a
                   href={org.phoneHref}
-                  className="flex min-h-[44px] items-center gap-3 text-[0.92rem] text-white/72 transition-colors duration-500 hover:text-gold"
+                  className="flex min-h-[44px] items-center justify-center gap-3 text-[0.92rem] text-white/72 transition-colors duration-500 hover:text-gold lg:justify-start"
                 >
                   <Icon name="phone" className="h-4 w-4 shrink-0 text-gold/70" strokeWidth={1.5} />
                   {org.phone}
@@ -107,7 +106,7 @@ export default function Footer() {
               <li>
                 <Link
                   to="/contact"
-                  className="flex min-h-[44px] items-center gap-3 text-[0.92rem] text-white/72 transition-colors duration-500 hover:text-gold"
+                  className="flex min-h-[44px] items-center justify-center gap-3 text-[0.92rem] text-white/72 transition-colors duration-500 hover:text-gold lg:justify-start"
                 >
                   <Icon name="mail" className="h-4 w-4 shrink-0 text-gold/70" strokeWidth={1.5} />
                   Message the league
@@ -119,7 +118,7 @@ export default function Footer() {
                     href={v.map}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex min-h-[44px] items-center gap-3 text-[0.92rem] text-white/72 transition-colors duration-500 hover:text-gold"
+                    className="flex min-h-[44px] items-center justify-center gap-3 text-[0.92rem] text-white/72 transition-colors duration-500 hover:text-gold lg:justify-start"
                   >
                     <Icon name="pin" className="mt-0.5 h-4 w-4 shrink-0 text-gold/70" strokeWidth={1.5} />
                     <span>
@@ -133,10 +132,22 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-white/8 pt-7 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col items-center gap-4 border-t border-white/8 pt-7 text-center sm:flex-row sm:justify-between sm:text-left">
           <p className="text-[0.8rem] text-white/40">
             © {year} {org.name}. All rights reserved.
           </p>
+
+          <p className="order-last flex items-center gap-1.5 text-[0.8rem] text-white/40 sm:order-none">
+            Designed with
+            <Icon
+              name="heart"
+              className="h-3.5 w-3.5 shrink-0 text-gold"
+              strokeWidth={1.6}
+              fill
+            />
+            <span className="font-semibold text-white/60">Apex Growth</span>
+          </p>
+
           <p className="text-[0.8rem] text-white/40">
             {org.city} · Built to compete.
           </p>

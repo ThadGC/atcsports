@@ -107,7 +107,10 @@ const m = await b.newPage({ viewport: { width: 390, height: 844 } })
 let mobBad = [], tapBad = []
 for (const p of PAGES) {
   await m.goto(BASE + p, { waitUntil: 'networkidle' })
-  await m.waitForTimeout(400)
+  // Wait for webfonts and for the sticky bar's entry transition to settle, otherwise
+  // elements get measured mid-animation and the tap-target check reads as flaky.
+  await m.evaluate(() => document.fonts?.ready)
+  await m.waitForTimeout(900)
   const r = await m.evaluate(() => {
     const de = document.documentElement
     // WCAG 2.5.8 exempts links inline in a sentence, and a visually hidden skip

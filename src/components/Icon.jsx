@@ -24,16 +24,17 @@ const P = {
   alert: 'M12 8.4v4.4M12 16.4v.01M10.3 4.3 3 17.1a2 2 0 0 0 1.7 3h14.6a2 2 0 0 0 1.7-3L13.7 4.3a2 2 0 0 0-3.4 0Z',
   whistle:
     'M12.5 9.5H21v3.7a5.3 5.3 0 1 1-8.5-4.2ZM12.5 9.5 8.8 5.2M6.5 12.8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z',
+  heart: 'M12 20.4 4.6 13a4.6 4.6 0 0 1 6.5-6.5l.9.9.9-.9A4.6 4.6 0 0 1 19.4 13Z',
   ball: 'M4.4 19.6c-1.3-5 .6-11 4.7-15.1 4.1.1 8.1 2 10.5 5.4.6 4.7-1.3 9.6-5 12.1-4-.2-7.9-1-10.2-2.4ZM9.4 14.6l5.2-5.2M10.9 12.1l1.3 1.3M12.6 10.4l1.3 1.3',
 }
 
-export default function Icon({ name, className = 'w-5 h-5', strokeWidth = 1.35 }) {
+export default function Icon({ name, className = 'w-5 h-5', strokeWidth = 1.35, fill = false }) {
   const d = P[name]
   if (!d) return null
   return (
     <svg
       viewBox="0 0 24 24"
-      fill="none"
+      fill={fill ? 'currentColor' : 'none'}
       stroke="currentColor"
       strokeWidth={strokeWidth}
       strokeLinecap="round"

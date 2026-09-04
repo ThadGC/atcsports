@@ -133,7 +133,7 @@ export default function FlagFootball() {
             <Reveal delay={110} className="lg:col-span-5">
               <div className="grid h-full gap-4 sm:gap-5">
                 <Bezel>
-                  <div className="hash-marks relative p-6 sm:p-8">
+                  <div className="relative p-6 sm:p-8">
                     <h3 className="text-[0.66rem] font-bold uppercase tracking-[0.24em] text-gold/85">
                       Saturday times
                     </h3>

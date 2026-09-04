@@ -20,9 +20,9 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Gridiron backdrop: a full field pinned behind the page under a heavy dark wash,
-     so it reads as texture rather than decoration. Fixed and pointer-events:none, so
-     it never repaints on scroll and never intercepts a tap. */
+  /* Stadium backdrop: pinned behind the page so content scrolls over it while it
+     stays put. Sits under a heavy black wash so it reads as depth, not as a photo.
+     Swap public/img/stadium.jpg to change it; no code change needed. */
   body::before {
     content: '';
     position: fixed;
@@ -30,8 +30,8 @@
     z-index: 0;
     pointer-events: none;
     background-image:
-      linear-gradient(rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.94)),
-      url('/img/pitch.svg');
+      linear-gradient(rgba(5, 5, 5, 0.86), rgba(5, 5, 5, 0.93)),
+      url('/img/stadium.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -141,39 +141,93 @@
     overflow: hidden;
   }
 
+  /* Pointer-reactive gold, desktop only. Touch devices have no hover to track, and
+     the effect is pure decoration, so it is never loaded there. */
+  @media (hover: hover) and (pointer: fine) {
+    .bezel {
+      --mx: 50%;
+      --my: 50%;
+    }
+
+    /* A light that rides the border and follows the cursor around the card. */
+    .bezel::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: radial-gradient(
+        220px circle at var(--mx) var(--my),
+        rgba(247, 236, 208, 0.95),
+        rgba(217, 184, 108, 0.45) 38%,
+        transparent 68%
+      );
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 600ms cubic-bezier(0.32, 0.72, 0, 1);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .bezel:hover::after {
+      opacity: 1;
+    }
+
+    /* A soft gold pool under the cursor, inside the card. */
+    .bezel-core::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        320px circle at var(--mx) var(--my),
+        rgba(217, 184, 108, 0.1),
+        transparent 60%
+      );
+      opacity: 0;
+      transition: opacity 600ms cubic-bezier(0.32, 0.72, 0, 1);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* A single gold sheen that sweeps the card as the cursor arrives. */
+    .bezel-core::after {
+      content: '';
+      position: absolute;
+      inset: -20% -60%;
+      background: linear-gradient(
+        105deg,
+        transparent 42%,
+        rgba(247, 236, 208, 0.14) 50%,
+        transparent 58%
+      );
+      transform: translate3d(-90%, 0, 0);
+      transition: transform 1100ms cubic-bezier(0.32, 0.72, 0, 1);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .bezel:hover .bezel-core::before {
+      opacity: 1;
+    }
+
+    .bezel:hover .bezel-core::after {
+      transform: translate3d(90%, 0, 0);
+    }
+  }
+
   /* ---- Glass surfaces (fixed / sticky only) ---- */
   .glass {
     background: rgba(10, 10, 11, 0.72);
     backdrop-filter: blur(22px) saturate(150%);
     -webkit-backdrop-filter: blur(22px) saturate(150%);
     border: 1px solid rgba(255, 255, 255, 0.09);
-  }
-
-  /* ---- Field lines: the sporty texture ---- */
-  .field-lines::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: repeating-linear-gradient(
-      90deg,
-      transparent 0 calc(10% - 1px),
-      rgba(255, 255, 255, 0.055) calc(10% - 1px) 10%
-    );
-    pointer-events: none;
-  }
-
-  .hash-marks::after {
-    content: '';
-    position: absolute;
-    inset-inline: 0;
-    top: 50%;
-    height: 1px;
-    background-image: repeating-linear-gradient(
-      90deg,
-      rgba(217, 184, 108, 0.5) 0 14px,
-      transparent 14px 34px
-    );
-    pointer-events: none;
   }
 
   /* ---- Buttons ---- */

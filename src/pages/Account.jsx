@@ -97,7 +97,6 @@ export default function Account() {
 
       <section className="relative overflow-hidden pt-32 sm:pt-40">
         <div className="stadium-glow absolute inset-0 opacity-70" />
-        <div className="field-lines absolute inset-0 opacity-25" />
 
         <div className="shell relative">
           <Reveal>

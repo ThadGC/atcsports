@@ -3,7 +3,7 @@ const BASE = process.env.BASE || 'http://localhost:5173'
 const b = await chromium.launch()
 const p = await b.newPage({ viewport: { width: 390, height: 844 } })
 const agg = new Map()
-for (const path of ['/', '/flag-football', '/login', '/register', '/contact']) {
+for (const path of ['/register']) {
   await p.goto(BASE + path, { waitUntil: 'networkidle' })
   await p.waitForTimeout(700)
   const out = await p.evaluate(() =>

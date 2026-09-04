@@ -23,7 +23,6 @@ function DivisionCard({ label, kind, i }) {
     <Reveal delay={i * 70}>
       <Bezel className="h-full">
         <div className="relative flex h-full flex-col p-6 sm:p-7">
-          <div className="field-lines absolute inset-0 opacity-20" />
           <span
             className={[
               'relative w-max rounded-full px-2.5 py-1 text-[0.58rem] font-extrabold uppercase tracking-[0.16em]',

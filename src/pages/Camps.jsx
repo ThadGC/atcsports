@@ -123,7 +123,6 @@ export default function Camps() {
               <Reveal key={pillar} delay={i * 90}>
                 <Bezel className="h-full">
                   <div className="relative h-full p-7 text-center sm:p-8">
-                    <div className="field-lines absolute inset-0 opacity-25" />
                     <span className="relative mx-auto grid h-12 w-12 place-items-center rounded-full border border-gold/28 bg-gold/8 text-gold">
                       <Icon name={PILLAR_ICONS[i]} className="h-5 w-5" strokeWidth={1.4} />
                     </span>

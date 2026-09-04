@@ -67,7 +67,6 @@ export default function Sevens() {
             <Reveal className="lg:col-span-7">
               <Bezel className="h-full">
                 <div className="relative p-7 sm:p-9">
-                  <div className="field-lines absolute inset-0 opacity-25" />
                   <h3 className="relative text-[0.66rem] font-bold uppercase tracking-[0.24em] text-gold/85">
                     Key rules
                   </h3>

@@ -49,19 +49,20 @@ export default function Home() {
         <div className="absolute inset-0">
           <img
             src="/img/hero-action.jpg"
-            alt="An ATC Sports athlete breaking away down the sideline as a defender reaches for the flag"
-            className="h-full w-full object-cover object-[64%_center] md:object-[58%_38%] lg:object-center"
+            alt="An ATC Sports athlete releasing a pass during a Saturday game while a coach looks on"
+            /* Widened and left-anchored on desktop so the athlete sits on the opposite
+               side from the headline; the crop is raised so his head clears the nav. */
+            className="absolute inset-y-0 left-0 h-full w-full max-w-none object-cover object-[62%_38%] sm:object-[58%_36%] md:w-[122%] md:object-[46%_34%] lg:w-[118%] lg:object-[48%_36%] xl:w-[112%]"
             fetchpriority="high"
-            width="1400"
-            height="933"
+            width="1600"
+            height="1065"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/72 to-ink/35" />
           <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/70 to-transparent lg:via-ink/45" />
-          <div className="field-lines absolute inset-0 opacity-45" />
           <div className="stadium-glow absolute inset-0 opacity-70" />
         </div>
 
-        <div className="shell relative flex min-h-[100dvh] flex-col justify-end pb-14 pt-32 sm:pb-20 sm:pt-36 lg:justify-center lg:pb-28">
+        <div className="shell relative flex min-h-[100dvh] flex-col justify-end pb-14 pt-32 sm:pb-20 sm:pt-36 md:justify-start md:pb-24 md:pt-[20vh] lg:justify-center lg:pt-36">
           <div className="max-w-4xl">
             <Reveal y={26}>
               <span className="eyebrow eyebrow--live">
@@ -89,7 +90,7 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={310}>
-              <div className="mt-9 flex flex-col gap-3 xs:flex-row xs:flex-wrap">
+              <div className="mt-9 flex flex-col gap-3 xs:flex-row xs:flex-wrap" data-hero-cta>
                 <Button to="/register">Register your athlete</Button>
                 <Button to="/flag-football" variant="ghost" icon="calendar">
                   See the Winter season
@@ -140,8 +141,7 @@ export default function Home() {
               <Reveal key={p.title} delay={i * 90}>
                 <Bezel className="h-full">
                   <div className="relative h-full p-7 sm:p-9">
-                    <div className="field-lines absolute inset-0 opacity-25" />
-                    <span className="relative font-display text-5xl text-white/8 sm:text-6xl">
+                    <span className="relative font-display text-5xl text-white sm:text-6xl">
                       0{i + 1}
                     </span>
                     <h3 className="relative mt-3 font-display text-[1.35rem] display-skew text-gold sm:text-[1.6rem]">
@@ -172,7 +172,9 @@ export default function Home() {
               <Reveal
                 key={p.slug}
                 delay={i * 100}
-                className={i === 0 ? 'lg:col-span-7' : 'lg:col-span-5'}
+                className={
+                  i === 0 ? 'lg:col-span-7' : i === 1 ? 'lg:col-span-5' : 'lg:col-span-6 lg:col-start-4'
+                }
               >
                 <Link to={p.href} className="group block h-full">
                   <Bezel className="h-full transition-transform duration-700 ease-swift group-hover:-translate-y-1">
@@ -254,7 +256,7 @@ export default function Home() {
             <div className="lg:col-span-7">
               <Reveal delay={120}>
                 <Bezel>
-                  <div className="hash-marks relative p-6 sm:p-8">
+                  <div className="relative p-6 sm:p-8">
                     <h3 className="text-[0.66rem] font-bold uppercase tracking-[0.24em] text-gold/85">
                       Game day rundown
                     </h3>
@@ -427,11 +429,7 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="shell mt-10 flex justify-center pb-20 sm:pb-24">
-          <Button href={org.live.photos} variant="ghost" icon="arrow">
-            Browse all photo albums
-          </Button>
-        </div>
+        <div className="pb-20 sm:pb-24" />
       </Section>
 
       {/* ---------------- FINAL CTA ---------------- */}
@@ -446,7 +444,6 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-ink/86" />
           <div className="stadium-glow absolute inset-0" />
-          <div className="field-lines absolute inset-0 opacity-40" />
         </div>
 
         <div className="shell relative py-24 text-center sm:py-32 lg:py-40">

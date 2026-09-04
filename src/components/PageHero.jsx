@@ -15,7 +15,6 @@ export default function PageHero({ eyebrow, title, accent, lead, image, alt, cta
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/82 to-ink/55" />
-        <div className="field-lines absolute inset-0 opacity-40" />
         <div className="stadium-glow absolute inset-0 opacity-75" />
       </div>
 

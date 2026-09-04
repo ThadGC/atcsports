@@ -12,7 +12,6 @@ export default function AuthShell({ eyebrow, title, accent, lead, children, asid
         <img src={image} alt={alt || ''} aria-hidden={alt ? undefined : 'true'} className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-ink/92" />
         <div className="stadium-glow absolute inset-0" />
-        <div className="field-lines absolute inset-0 opacity-35" />
       </div>
 
       <div className="shell relative grid items-center gap-8 lg:grid-cols-12 lg:gap-12">

@@ -36,7 +36,6 @@ export default function Locations() {
               <Reveal key={v.name} delay={i * 100}>
                 <Bezel className="h-full">
                   <div className="relative flex h-full flex-col p-7 sm:p-9">
-                    <div className="field-lines absolute inset-0 opacity-25" />
                     <span className="relative grid h-11 w-11 place-items-center rounded-full border border-gold/28 bg-gold/8 text-gold">
                       <Icon name="pin" className="h-5 w-5" strokeWidth={1.4} />
                     </span>

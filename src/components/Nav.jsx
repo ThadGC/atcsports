@@ -47,37 +47,39 @@ export default function Nav() {
         <div className="shell">
           <div
             className={[
-              'pointer-events-auto mx-auto flex items-center gap-2 rounded-full glass transition-all duration-700 ease-swift',
-              lifted ? 'mt-3 py-2 pl-3 pr-2 shadow-[0_18px_50px_-24px_rgba(0,0,0,0.95)]' : 'mt-4 py-2.5 pl-3.5 pr-2.5 sm:mt-6',
+              'pointer-events-auto relative mx-auto grid grid-cols-[auto_1fr_auto] items-center gap-2 rounded-full glass transition-all duration-700 ease-swift',
+              lifted
+                ? 'mt-3 py-2 pl-2 pr-2 shadow-[0_18px_50px_-24px_rgba(0,0,0,0.95)] sm:pl-3'
+                : 'mt-4 py-2.5 pl-2 pr-2.5 sm:mt-6 sm:pl-3.5',
             ].join(' ')}
           >
             {/* Clickable logo → home */}
             <Link
               to="/"
-              className="flex min-h-[44px] shrink-0 items-center gap-2.5 rounded-full pr-1 transition-opacity duration-500 hover:opacity-80"
+              className="flex min-h-[44px] shrink-0 items-center rounded-full transition-opacity duration-500 hover:opacity-80"
               aria-label={`${org.name} home`}
             >
               <img
-                src="/img/logo-mark.png"
+                src="/img/logo-wide.png"
                 alt=""
-                width="40"
-                height="30"
-                className="h-7 w-auto sm:h-8"
+                width="150"
+                height="24"
+                className="h-8 w-auto sm:h-9 lg:h-10"
               />
               <span className="sr-only">{org.name}</span>
             </Link>
 
-            <span className="hidden h-5 w-px shrink-0 bg-white/12 lg:block" />
 
-            {/* Desktop links */}
-            <nav className="hidden lg:flex items-center" aria-label="Primary">
+            {/* Desktop links, pinned to the true centre of the bar so the logo and
+                the CTA cluster can change width without shifting them. */}
+            <nav className="hidden justify-center lg:flex lg:items-center" aria-label="Primary">
               {nav.map((item) => (
                 <NavLink
                   key={item.href}
                   to={item.href}
                   className={({ isActive }) =>
                     [
-                      'relative rounded-full px-3.5 py-2 text-[0.78rem] font-bold uppercase tracking-[0.1em] transition-all duration-500 ease-swift xl:px-4',
+                      'relative whitespace-nowrap rounded-full px-2.5 py-2 text-[0.74rem] font-bold uppercase tracking-[0.08em] transition-all duration-500 ease-swift xl:px-3.5 xl:text-[0.78rem] xl:tracking-[0.1em]',
                       isActive ? 'text-gold' : 'text-white/62 hover:text-white',
                     ].join(' ')
                   }
@@ -87,39 +89,44 @@ export default function Nav() {
               ))}
             </nav>
 
-            <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
+            <div className="col-start-3 flex items-center justify-end gap-1.5 sm:gap-2">
+              {/* Phone and account collapse to gold icon buttons from tablet up, where
+                  the bar is tight, and expand back to labelled pills on wide desktop. */}
               <a
                 href={org.phoneHref}
-                className="hidden shrink-0 items-center gap-2 rounded-full border border-white/12 px-3.5 py-2 text-[0.78rem] font-bold text-white/78 transition-all duration-500 ease-swift hover:border-gold/50 hover:text-gold md:inline-flex"
+                aria-label={`Call ${org.name} on ${org.phone}`}
+                className="hidden h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-gold/30 bg-gold/8 px-3 text-[0.78rem] font-bold text-gold transition-all duration-500 ease-swift hover:border-gold/60 hover:bg-gold/14 md:inline-flex xl:px-4"
               >
-                <Icon name="phone" className="h-3.5 w-3.5" strokeWidth={1.6} />
+                <Icon name="phone" className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.6} />
                 <span className="hidden xl:inline">{org.phone}</span>
               </a>
 
               {user ? (
                 <Link
                   to="/account"
-                  className="hidden shrink-0 items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3.5 py-2 text-[0.78rem] font-bold text-gold transition-all duration-500 ease-swift hover:bg-gold/16 sm:inline-flex"
+                  aria-label="Your account"
+                  className="hidden h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 text-[0.78rem] font-bold text-gold transition-all duration-500 ease-swift hover:bg-gold/16 sm:inline-flex xl:px-4"
                 >
-                  <Icon name="user" className="h-3.5 w-3.5" strokeWidth={1.6} />
-                  {user.firstName || 'Account'}
+                  <Icon name="user" className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.6} />
+                  <span className="hidden xl:inline">{user.firstName || 'Account'}</span>
                 </Link>
               ) : (
                 <Link
                   to="/login"
-                  className="hidden shrink-0 rounded-full px-3 py-2 text-[0.78rem] font-bold uppercase tracking-[0.1em] text-white/70 transition-colors duration-500 hover:text-white sm:block"
+                  aria-label="Log in"
+                  className="hidden h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-white/12 px-3 text-[0.78rem] font-bold uppercase tracking-[0.1em] text-gold transition-all duration-500 ease-swift hover:border-gold/50 hover:bg-gold/8 sm:inline-flex xl:px-4"
                 >
-                  Log in
+                  <Icon name="lock" className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.6} />
+                  <span className="hidden xl:inline">Log in</span>
                 </Link>
               )}
 
               <Button
                 to="/register"
-                className="!px-3.5 !py-2 !pl-4 max-[380px]:!hidden"
+                className="!hidden !px-3.5 !py-2 !pl-4 sm:!inline-flex"
                 icon="arrow"
               >
-                <span className="hidden sm:inline">Register</span>
-                <span className="sm:hidden">Join</span>
+                Register
               </Button>
 
               {/* Morphing hamburger */}

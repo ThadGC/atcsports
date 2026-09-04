@@ -19,7 +19,6 @@ export default function NotFound() {
           <img src="/img/flag-pull.jpg" alt="" aria-hidden="true" className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-ink/92" />
           <div className="stadium-glow absolute inset-0" />
-          <div className="field-lines absolute inset-0 opacity-40" />
         </div>
 
         <div className="shell relative text-center">
