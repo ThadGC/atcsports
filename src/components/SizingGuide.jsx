@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { sizing } from '../data/site.js'
 import Bezel from './Bezel.jsx'
 import Icon from './Icon.jsx'
+import BodyDiagram from './BodyDiagram.jsx'
 
 // Interactive version of the uniform sizing chart ATC publishes. Pick a category and a
 // measurement, type the number, and it points at the size rather than making parents
@@ -175,13 +176,13 @@ export default function SizingGuide() {
                     key={sz.code}
                     scope="col"
                     className={[
-                      'border-b py-2.5 pr-4 text-left font-display text-[0.95rem] tracking-wide',
+                      'border-b py-3 pr-4 align-bottom text-left font-display text-[0.95rem] tracking-wide',
                       match?.index === i ? 'border-gold text-gold' : 'border-white/14 text-white',
                     ].join(' ')}
                   >
-                    {sz.code}
+                    <span className="block leading-none">{sz.code}</span>
                     {sz.us && (
-                      <span className="block text-[0.66rem] font-normal tracking-normal text-white/40">
+                      <span className="mt-1.5 block font-sans text-[0.66rem] font-semibold leading-none tracking-[0.06em] text-white/45">
                         {sz.us}
                       </span>
                     )}
@@ -220,8 +221,9 @@ export default function SizingGuide() {
           </table>
         </div>
 
-        {/* How to measure */}
-        <div className="mt-8 grid gap-5 border-t border-white/8 pt-6 sm:grid-cols-2">
+        {/* How to measure, with the diagram beside it as on the printed chart */}
+        <div className="mt-8 grid gap-8 border-t border-white/8 pt-7 lg:grid-cols-[1fr_auto]">
+          <div className="grid gap-6 sm:grid-cols-2">
           <div>
             <h4 className="text-[0.63rem] font-bold uppercase tracking-[0.2em] text-gold/85">
               How to measure
@@ -248,6 +250,11 @@ export default function SizingGuide() {
               ))}
             </ul>
           </div>
+          </div>
+
+          <figure className="m-0 flex items-center justify-center gap-5 rounded-2xl border border-white/8 bg-white/[0.02] p-5 lg:w-[15rem]">
+            <BodyDiagram highlight={active} className="h-56 w-auto lg:h-64" />
+          </figure>
         </div>
       </div>
     </Bezel>

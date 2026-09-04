@@ -20,10 +20,20 @@ async function keyOut(src, out, width) {
       lum <= FLOOR ? 0 : lum >= CEIL ? 255 : Math.round(((lum - FLOOR) / (CEIL - FLOOR)) * 255)
   }
 
-  await sharp(px, { raw: { width: info.width, height: info.height, channels: info.channels } })
+  // Trim the transparent margin the source art carries. Left in, it is invisible
+  // padding that pushes the wordmark away from whatever edge it is aligned to, and
+  // no amount of CSS can pull it back.
+  const trimmed = await sharp(px, {
+    raw: { width: info.width, height: info.height, channels: info.channels },
+  })
+    .trim({ threshold: 12 })
     .png({ compressionLevel: 9, palette: false })
-    .toFile(out)
-  console.log(`${out}  ${info.width}x${info.height}`)
+    .toBuffer({ resolveWithObject: true })
+
+  await sharp(trimmed.data).toFile(out)
+  console.log(
+    `${out}  ${info.width}x${info.height} -> ${trimmed.info.width}x${trimmed.info.height} (trimmed)`,
+  )
 }
 
 const SP = process.argv[2]

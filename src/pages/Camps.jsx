@@ -16,7 +16,7 @@ export default function Camps() {
         title="Elite Youth Football Skills Camps"
         description="A high-intensity youth football skills camp in Roseville, CA covering speed, agility, football IQ and position-specific technique. June 20 and June 27, 9:00 to 11:00 AM at Mahany Football Fields."
         path="/camps"
-        image="/img/camp.jpg"
+        image="/img/action-3.jpg"
       />
 
       <PageHero
@@ -44,15 +44,14 @@ export default function Camps() {
         <div className="shell grid gap-4 sm:gap-5 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">
             <Bezel className="h-full">
-              {/* contain, not cover: the flyer carries the dates and location, so it
-                  must never be cropped */}
-              <div className="relative flex h-full min-h-[300px] items-center justify-center bg-ink-800 p-2">
+              <div className="relative h-full min-h-[320px] overflow-hidden">
                 <img
-                  src="/img/camp.jpg"
-                  alt="Elite Youth Football Skills Camp flyer showing dates, time and location"
+                  src="/img/qb-drop.jpg"
+                  alt="A young quarterback setting his feet to throw while a coach watches"
                   loading="lazy"
-                  className="max-h-[520px] w-full rounded-2xl object-contain"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink-800/70 to-transparent" />
               </div>
             </Bezel>
           </Reveal>

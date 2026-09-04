@@ -5,6 +5,7 @@ import Footer from './components/Footer.jsx'
 import CardGlow from './components/CardGlow.jsx'
 import SectionRules from './components/SectionRules.jsx'
 import MobileCtaBar from './components/MobileCtaBar.jsx'
+import FloatingCall from './components/FloatingCall.jsx'
 import { AuthProvider } from './auth/AuthContext.jsx'
 
 function ScrollToTop() {
@@ -27,6 +28,7 @@ export default function Layout() {
       </main>
       <Footer />
       <MobileCtaBar />
+      <FloatingCall />
       {/* Clearance for the sticky mobile bar. */}
       <div className="h-[78px] lg:hidden" aria-hidden="true" />
     </AuthProvider>

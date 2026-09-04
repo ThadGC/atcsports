@@ -30,9 +30,9 @@ const schema = {
 
 const HERO_STATS = [
   ['9', 'Saturdays'],
-  ['10', 'Players a team'],
-  ['Pre-K to 8', 'Grades'],
+  ['10', 'Players per team'],
   ['2', 'Home fields'],
+  ['Pre-K to 8th', 'Grade'],
 ]
 
 export default function Home() {
@@ -48,16 +48,21 @@ export default function Home() {
       {/* ---------------- HERO ---------------- */}
       <section className="relative min-h-[100dvh] w-full overflow-hidden">
         <div className="absolute inset-0">
+          {/* Mobile gets a purpose-built crop: see scripts/hero-mobile.mjs for why a
+              tall phone frame cannot place this athlete beside the headline otherwise. */}
+          <picture>
+          <source media="(max-width: 767px)" srcSet="/img/hero-mobile.jpg" />
           <img
             src="/img/flag-pull.jpg"
             alt="An ATC Sports ball carrier cutting into the end zone as a defender reaches for the flag"
             /* Widened and left-anchored on desktop so the athlete sits on the opposite
                side from the headline; the crop is raised so his head clears the nav. */
-            className="absolute inset-y-0 left-0 h-full w-full max-w-none object-cover object-[64%_32%] sm:object-[58%_30%] md:w-[130%] md:object-[40%_26%] lg:w-[126%] lg:object-[42%_28%] xl:w-[120%]"
+            className="absolute inset-y-0 left-0 h-full w-full max-w-none object-cover object-[45.4%_center] sm:object-[58%_30%] md:w-[130%] md:object-[40%_26%] lg:w-[126%] lg:object-[42%_28%] xl:w-[120%]"
             fetchpriority="high"
             width="1400"
             height="1302"
           />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/72 to-ink/35" />
           <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/70 to-transparent lg:via-ink/45" />
           <div className="stadium-glow absolute inset-0 opacity-70" />
@@ -103,7 +108,7 @@ export default function Home() {
               <dl className="mt-12 grid max-w-2xl grid-cols-2 gap-x-4 gap-y-6 sm:mt-14 sm:grid-cols-4">
                 {HERO_STATS.map(([n, label]) => (
                   <div key={label} className="border-l border-gold/28 pl-4">
-                    <dt className="font-display text-2xl text-metal sm:text-3xl">{n}</dt>
+                    <dt className="whitespace-nowrap font-display text-2xl text-metal sm:text-[1.6rem] lg:text-3xl">{n}</dt>
                     <dd className="mt-1 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-white/48">
                       {label}
                     </dd>
@@ -352,8 +357,8 @@ export default function Home() {
               <div className="relative grid lg:grid-cols-2">
                 <div className="relative order-2 min-h-[280px] overflow-hidden lg:order-1 lg:min-h-[440px]">
                   <img
-                    src="/img/camp.jpg"
-                    alt="Elite Youth Football Skills Camp graphic showing athletes competing for a catch"
+                    src="/img/champion.jpg"
+                    alt="An ATC Sports athlete on the field in full uniform"
                     loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover"
                   />

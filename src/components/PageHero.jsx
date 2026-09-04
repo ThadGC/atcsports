@@ -1,18 +1,21 @@
 import Reveal from './Reveal.jsx'
 import Button from './Button.jsx'
 
-export default function PageHero({ eyebrow, title, accent, lead, image, alt, ctas, stats }) {
+export default function PageHero({ eyebrow, title, accent, lead, image, mobileImage, alt, ctas, stats }) {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
         {image && (
-          <img
-            src={image}
-            alt={alt || ''}
-            aria-hidden={alt ? undefined : 'true'}
-            className="h-full w-full object-cover object-center"
-            fetchpriority="high"
-          />
+          <picture>
+            {mobileImage && <source media="(max-width: 767px)" srcSet={mobileImage} />}
+            <img
+              src={image}
+              alt={alt || ''}
+              aria-hidden={alt ? undefined : 'true'}
+              className="h-full w-full object-cover object-[62%_center] md:object-center"
+              fetchpriority="high"
+            />
+          </picture>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/82 to-ink/55" />
         <div className="stadium-glow absolute inset-0 opacity-75" />

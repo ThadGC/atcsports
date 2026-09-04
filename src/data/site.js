@@ -95,8 +95,8 @@ export const programs = [
     ages: 'All levels',
     blurb:
       'High-intensity skills camps built around speed, agility, football IQ and position-specific technique with expert coaching.',
-    image: '/img/camp.jpg',
-    alt: 'Elite Youth Football Skills Camp promotional graphic',
+    image: '/img/action-3.jpg',
+    alt: 'An ATC Sports athlete running the ball during a skills session',
     stats: [
       ['2', 'Hour sessions'],
       ['3', 'Coaching partners'],
@@ -195,6 +195,8 @@ export const camp = {
   ],
 }
 
+// Game day photos only. The camp flyer is a promo graphic, not a game day photo, so
+// it does not belong in this set.
 export const gallery = [
   { src: '/img/hero-action.jpg', alt: 'An ATC Sports player breaking away down the sideline as a defender dives for the flag' },
   { src: '/img/catch.jpg', alt: 'A young receiver securing a catch on the Whitney Wildcats field' },
@@ -203,7 +205,6 @@ export const gallery = [
   { src: '/img/action-3.jpg', alt: 'An ATC Sports player running the ball back up the sideline during a Saturday game' },
   { src: '/img/action-5.jpg', alt: 'A young athlete releasing a pass as a coach looks on from the sideline' },
   { src: '/img/champion.jpg', alt: 'An ATC Sports player in a white and gold jersey flexing on the field' },
-  { src: '/img/camp.jpg', alt: 'Elite Youth Football Skills Camp graphic showing athletes competing for a catch' },
 ]
 
 // Top-level navigation. The league tools group under one item so the bar stays a

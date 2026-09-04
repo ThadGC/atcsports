@@ -53,25 +53,25 @@ export default function MobileCtaBar() {
       aria-hidden={!show}
       {...(show ? {} : { inert: '' })}
     >
-      <div className="glass border-x-0 border-b-0 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3">
+      <div className="glass border-x-0 border-b-0 px-3 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-2">
         <div className="mx-auto flex max-w-md items-center gap-2.5">
           <Link
             to="/register"
-            className="btn btn-gold min-h-[52px] flex-1 justify-center !px-4 !pl-5"
+            className="btn btn-gold min-h-[46px] flex-1 justify-center !px-3.5 !py-2 !pl-4"
           >
-            <span className="text-[0.9rem]">Register</span>
-            <span className="btn-pip">
-              <Icon name="arrow" className="h-[0.95rem] w-[0.95rem]" strokeWidth={1.7} />
+            <span className="text-[0.85rem]">Register</span>
+            <span className="btn-pip !h-7 !w-7">
+              <Icon name="arrow" className="h-[0.85rem] w-[0.85rem]" strokeWidth={1.7} />
             </span>
           </Link>
 
           <a
             href={org.phoneHref}
-            className="btn btn-ghost min-h-[52px] flex-1 justify-center !px-4 !pl-5"
+            className="btn btn-ghost min-h-[46px] flex-1 justify-center !px-3.5 !py-2 !pl-4"
           >
-            <span className="text-[0.9rem]">Call us</span>
-            <span className="btn-pip">
-              <Icon name="phone" className="h-[0.95rem] w-[0.95rem]" strokeWidth={1.7} />
+            <span className="text-[0.85rem]">Call us</span>
+            <span className="btn-pip !h-7 !w-7">
+              <Icon name="phone" className="h-[0.85rem] w-[0.85rem]" strokeWidth={1.7} />
             </span>
           </a>
         </div>

@@ -10,8 +10,8 @@ export default function Footer() {
       <div className="stadium-glow pointer-events-none absolute inset-0 opacity-40" />
 
       <div className="shell relative py-16 md:py-20">
-        <div className="grid grid-cols-2 gap-x-6 gap-y-11 md:grid-cols-2 lg:grid-cols-12 lg:gap-10">
-          <div className="col-span-2 lg:col-span-4">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-11 md:grid-cols-4 md:gap-y-12 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-0">
+          <div className="col-span-2 md:col-span-4 lg:col-span-3">
             <Link to="/" aria-label={`${org.name} home`} className="inline-block">
               <img
                 src="/img/logo-wide.png"
@@ -41,25 +41,37 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="col-span-1 lg:col-span-2">
-            <h2 className="text-[0.66rem] font-bold uppercase tracking-[0.24em] text-gold/85">
-              Programs
-            </h2>
-            <ul className="mt-3 space-y-0.5">
-              {navFlat.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    to={item.href}
-                    className="inline-flex min-h-[44px] items-center text-[0.92rem] text-white/60 transition-colors duration-500 hover:text-gold"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Two balanced columns, so tablet reads as a 2x2 of four blocks rather
+              than one long list beside three short ones. */}
+          {[navFlat.slice(0, Math.ceil(navFlat.length / 2)), navFlat.slice(Math.ceil(navFlat.length / 2))].map(
+            (half, col) => (
+              <div key={col} className="col-span-1 md:col-span-2 lg:col-span-2">
+                <h2
+                  className={[
+                    'text-[0.66rem] font-bold uppercase tracking-[0.24em] text-gold/85',
+                    col === 1 ? 'md:opacity-0' : '',
+                  ].join(' ')}
+                  aria-hidden={col === 1 ? 'true' : undefined}
+                >
+                  {col === 0 ? 'Programs' : 'Programs'}
+                </h2>
+                <ul className="mt-3 space-y-0.5">
+                  {half.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        to={item.href}
+                        className="inline-flex min-h-[44px] items-center text-[0.92rem] text-white/60 transition-colors duration-500 hover:text-gold"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ),
+          )}
 
-          <div className="col-span-1 lg:col-span-3">
+          <div className="col-span-2 md:col-span-2 lg:col-span-2">
             <h2 className="text-[0.66rem] font-bold uppercase tracking-[0.24em] text-gold/85">
               League Central
             </h2>
@@ -89,7 +101,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="col-span-2 text-center lg:col-span-3 lg:text-left">
+          <div className="col-span-2 text-center md:col-span-2 md:text-left lg:col-span-3 lg:text-left">
             <h2 className="text-[0.66rem] font-bold uppercase tracking-[0.24em] text-gold/85">
               Get In Touch
             </h2>
@@ -97,7 +109,7 @@ export default function Footer() {
               <li>
                 <a
                   href={org.phoneHref}
-                  className="flex min-h-[44px] items-center justify-center gap-3 text-[0.92rem] text-white/72 transition-colors duration-500 hover:text-gold lg:justify-start"
+                  className="flex min-h-[44px] items-center justify-center gap-3 text-[0.92rem] text-white/72 transition-colors duration-500 hover:text-gold md:justify-start"
                 >
                   <Icon name="phone" className="h-4 w-4 shrink-0 text-gold/70" strokeWidth={1.5} />
                   {org.phone}
@@ -106,7 +118,7 @@ export default function Footer() {
               <li>
                 <Link
                   to="/contact"
-                  className="flex min-h-[44px] items-center justify-center gap-3 text-[0.92rem] text-white/72 transition-colors duration-500 hover:text-gold lg:justify-start"
+                  className="flex min-h-[44px] items-center justify-center gap-3 text-[0.92rem] text-white/72 transition-colors duration-500 hover:text-gold md:justify-start"
                 >
                   <Icon name="mail" className="h-4 w-4 shrink-0 text-gold/70" strokeWidth={1.5} />
                   Message the league
@@ -118,7 +130,7 @@ export default function Footer() {
                     href={v.map}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex min-h-[44px] items-center justify-center gap-3 text-[0.92rem] text-white/72 transition-colors duration-500 hover:text-gold lg:justify-start"
+                    className="flex min-h-[44px] items-center justify-center gap-3 text-[0.92rem] text-white/72 transition-colors duration-500 hover:text-gold md:justify-start"
                   >
                     <Icon name="pin" className="mt-0.5 h-4 w-4 shrink-0 text-gold/70" strokeWidth={1.5} />
                     <span>

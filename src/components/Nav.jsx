@@ -49,22 +49,22 @@ export default function Nav() {
             className={[
               'pointer-events-auto relative mx-auto grid grid-cols-[auto_1fr_auto] items-center gap-2 rounded-full glass transition-all duration-700 ease-swift',
               lifted
-                ? 'mt-3 py-2 pl-1.5 pr-2 shadow-[0_18px_50px_-24px_rgba(0,0,0,0.95)] sm:pl-3'
-                : 'mt-4 py-2.5 pl-1.5 pr-2.5 sm:mt-6 sm:pl-3.5',
+                ? 'mt-3 py-2 pl-4 pr-2 shadow-[0_18px_50px_-24px_rgba(0,0,0,0.95)] sm:pl-5'
+                : 'mt-4 py-2.5 pl-4 pr-2.5 sm:mt-6 sm:pl-6',
             ].join(' ')}
           >
             {/* Clickable logo → home */}
             <Link
               to="/"
-              className="-ml-1 flex min-h-[44px] shrink-0 items-center rounded-full pt-1 transition-opacity duration-500 hover:opacity-80 sm:ml-0 sm:pt-0"
+              className="flex min-h-[44px] shrink-0 items-center rounded-full transition-opacity duration-500 hover:opacity-80"
               aria-label={`${org.name} home`}
             >
               <img
                 src="/img/logo-wide.png"
                 alt=""
-                width="150"
-                height="24"
-                className="h-8 w-auto shrink-0 sm:h-9 lg:h-9 xl:h-10"
+                width="726"
+                height="146"
+                className="h-6 w-auto shrink-0 xs:h-7 sm:h-8 lg:h-7 xl:h-8"
               />
               <span className="sr-only">{org.name}</span>
             </Link>
@@ -139,7 +139,7 @@ export default function Nav() {
               <a
                 href={org.phoneHref}
                 aria-label={`Call ${org.name} on ${org.phone}`}
-                className="hidden h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-gold/30 bg-gold/8 px-3 text-[0.78rem] font-bold text-gold transition-all duration-500 ease-swift hover:border-gold/60 hover:bg-gold/14 md:inline-flex 2xl:px-4"
+                className="hidden h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-gold/30 bg-gold/8 px-3 text-[0.78rem] font-bold text-gold transition-all duration-500 ease-swift hover:border-gold/60 hover:bg-gold/14 xl:inline-flex xl:px-4"
               >
                 <Icon name="phone" className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.6} />
                 <span className="hidden 2xl:inline">{org.phone}</span>
@@ -152,7 +152,7 @@ export default function Nav() {
                   className="hidden h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 text-[0.78rem] font-bold text-gold transition-all duration-500 ease-swift hover:bg-gold/16 sm:inline-flex 2xl:px-4"
                 >
                   <Icon name="user" className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.6} />
-                  <span className="hidden 2xl:inline">{user.firstName || 'Account'}</span>
+                  <span className="hidden sm:inline">{user.firstName || 'Account'}</span>
                 </Link>
               ) : (
                 <Link
@@ -160,8 +160,8 @@ export default function Nav() {
                   aria-label="Log in"
                   className="hidden h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-white/12 px-3 text-[0.78rem] font-bold uppercase tracking-[0.1em] text-gold transition-all duration-500 ease-swift hover:border-gold/50 hover:bg-gold/8 sm:inline-flex 2xl:px-4"
                 >
-                  <Icon name="lock" className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.6} />
-                  <span className="hidden 2xl:inline">Log in</span>
+                  <Icon name="user" className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.6} />
+                  <span className="hidden sm:inline">Log in</span>
                 </Link>
               )}
 
@@ -179,7 +179,7 @@ export default function Nav() {
                 onClick={() => setOpen((v) => !v)}
                 aria-label={open ? 'Close menu' : 'Open menu'}
                 aria-expanded={open}
-                className="relative grid h-11 w-11 shrink-0 place-items-center rounded-full border border-white/12 transition-colors duration-500 hover:border-gold/45 lg:hidden"
+                className="relative grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold/55 transition-colors duration-500 hover:border-gold hover:bg-gold/8 lg:hidden"
               >
                 <span className="relative block h-3 w-[18px]">
                   <span

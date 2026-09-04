@@ -24,6 +24,7 @@ export default function FlagFootball() {
         accent="Football"
         lead="One morning a week, your athlete practices for an hour and then plays a real game on a real field. No weeknight scramble, no half a season on the bench."
         image="/img/hero-action.jpg"
+        mobileImage="/img/flag-pull.jpg"
         alt="An ATC Sports athlete breaking away down the sideline as a defender reaches for the flag"
         ctas={
           <>
