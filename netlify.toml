@@ -1,0 +1,23 @@
+# Clean URLs come from prerendered directory indexes, so no SPA catch-all rewrite:
+# a blanket /* -> /index.html would serve the homepage's HTML for every route and
+# throw away the per-page titles and meta this build exists to produce.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"

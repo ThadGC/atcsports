@@ -1,0 +1,362 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --gold: #d9b86c;
+    --gold-lite: #f0dca8;
+    --ink: #050505;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--ink);
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Gridiron backdrop: a full field pinned behind the page under a heavy dark wash,
+     so it reads as texture rather than decoration. Fixed and pointer-events:none, so
+     it never repaints on scroll and never intercepts a tap. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.94)),
+      url('/img/pitch.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* Sits the whole app above the backdrop. Transparent sections let the field show. */
+  #root {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* No horizontal scroll, ever */
+  html,
+  body {
+    max-width: 100%;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: #050505;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  /* ---- Type ---- */
+  .font-display {
+    font-family: Anton, Impact, system-ui, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 0.92;
+    text-transform: uppercase;
+  }
+
+  .display-skew {
+    transform: skewX(-7deg);
+  }
+
+  /* Fluid display sizes: never overflow, scale on tablet + mobile */
+  .t-hero {
+    font-size: clamp(2.85rem, 10.5vw, 9.5rem);
+  }
+  .t-h1 {
+    font-size: clamp(2.35rem, 7vw, 5.75rem);
+  }
+  .t-h2 {
+    font-size: clamp(1.9rem, 5vw, 3.75rem);
+  }
+  .t-h3 {
+    font-size: clamp(1.45rem, 3.2vw, 2.25rem);
+  }
+
+  /* ---- Brand gold, as real metal ---- */
+  .text-metal {
+    background: linear-gradient(
+      168deg,
+      #f7ecd0 0%,
+      #d9b86c 26%,
+      #a8874a 52%,
+      #e8d29a 74%,
+      #c6a055 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .rule-gold {
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  /* ---- Double-bezel: outer tray + inner plate ---- */
+  .bezel {
+    position: relative;
+    border-radius: 2rem;
+    padding: 6px;
+    background: linear-gradient(
+      160deg,
+      rgba(217, 184, 108, 0.22),
+      rgba(255, 255, 255, 0.04) 38%,
+      rgba(255, 255, 255, 0.015) 100%
+    );
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  }
+
+  .bezel-core {
+    position: relative;
+    border-radius: calc(2rem - 6px);
+    background: #0a0a0b;
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.09),
+      0 26px 60px -28px rgba(0, 0, 0, 0.95);
+    overflow: hidden;
+  }
+
+  /* ---- Glass surfaces (fixed / sticky only) ---- */
+  .glass {
+    background: rgba(10, 10, 11, 0.72);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  /* ---- Field lines: the sporty texture ---- */
+  .field-lines::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent 0 calc(10% - 1px),
+      rgba(255, 255, 255, 0.055) calc(10% - 1px) 10%
+    );
+    pointer-events: none;
+  }
+
+  .hash-marks::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: 50%;
+    height: 1px;
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(217, 184, 108, 0.5) 0 14px,
+      transparent 14px 34px
+    );
+    pointer-events: none;
+  }
+
+  /* ---- Buttons ---- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    transition: all 700ms cubic-bezier(0.32, 0.72, 0, 1);
+    will-change: transform;
+  }
+
+  .btn:active {
+    transform: scale(0.975);
+  }
+
+  .btn-gold {
+    background: linear-gradient(140deg, #f0dca8, #d9b86c 45%, #b4914f);
+    color: #0a0a0b;
+    padding: 0.9rem 0.9rem 0.9rem 1.6rem;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.45) inset,
+      0 18px 40px -18px rgba(217, 184, 108, 0.75);
+  }
+
+  .btn-gold:hover {
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.6) inset,
+      0 24px 52px -16px rgba(217, 184, 108, 0.9);
+  }
+
+  .btn-ghost {
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #fff;
+    padding: 0.9rem 0.9rem 0.9rem 1.6rem;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .btn-ghost:hover {
+    border-color: rgba(217, 184, 108, 0.55);
+    background: rgba(217, 184, 108, 0.07);
+  }
+
+  /* Button-in-button trailing icon */
+  .btn-pip {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    flex: none;
+    transition: transform 700ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .btn-gold .btn-pip {
+    background: rgba(10, 10, 11, 0.14);
+  }
+
+  .btn-ghost .btn-pip {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .group:hover .btn-pip {
+    transform: translate(4px, -1px) scale(1.06);
+  }
+
+  /* ---- Eyebrow tag ---- */
+  /* Bare label: a gold dot and spaced caps. No pill, no border, no fill. */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--gold-lite);
+  }
+
+  .eyebrow::before {
+    content: '';
+    flex: none;
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    background: var(--gold);
+  }
+
+  /* The hero uses its own pulsing dot, so suppress the static one. */
+  .eyebrow--live::before {
+    display: none;
+  }
+
+  /* ---- Form controls ---- */
+  .field {
+    width: 100%;
+    border-radius: 0.95rem;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    background: rgba(255, 255, 255, 0.035);
+    padding: 0.9rem 1.05rem;
+    font-size: 0.95rem;
+    color: #fff;
+    transition: all 350ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .field::placeholder {
+    color: rgba(255, 255, 255, 0.34);
+  }
+
+  .field:focus {
+    outline: none;
+    border-color: rgba(217, 184, 108, 0.7);
+    background: rgba(217, 184, 108, 0.06);
+    box-shadow: 0 0 0 4px rgba(217, 184, 108, 0.12);
+  }
+
+  .field-error {
+    border-color: rgba(248, 113, 113, 0.75) !important;
+    background: rgba(248, 113, 113, 0.07) !important;
+  }
+
+  .shell {
+    width: 100%;
+    max-width: 88rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .shell {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .shell {
+      padding-inline: 3.5rem;
+    }
+  }
+}
+
+@layer utilities {
+  .stadium-glow {
+    background:
+      radial-gradient(60% 45% at 18% 0%, rgba(217, 184, 108, 0.2), transparent 62%),
+      radial-gradient(50% 40% at 88% 12%, rgba(217, 184, 108, 0.12), transparent 66%),
+      radial-gradient(70% 55% at 50% 100%, rgba(217, 184, 108, 0.08), transparent 70%);
+  }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, #000 42%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 42%, transparent 100%);
+  }
+
+  .{
+    mix-blend-mode: screen;
+  }
+
+  .marquee-track {
+    animation: marquee 38s linear infinite;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+}
+
+/* Respect reduced motion across the board */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
