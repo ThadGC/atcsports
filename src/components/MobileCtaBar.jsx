@@ -46,7 +46,10 @@ export default function MobileCtaBar() {
     <div
       className={[
         'fixed inset-x-0 bottom-0 z-[58] lg:hidden',
-        'transition-all duration-500 ease-swift',
+        // Only transform and opacity. transition-all also animated the safe-area
+        // padding, and a phone toolbar collapsing mid-scroll changes that inset
+        // repeatedly, so the bar visibly shook until the toolbar settled.
+        'transition-[transform,opacity] duration-500 ease-swift',
         show ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-full opacity-0',
       ].join(' ')}
       // Hidden from assistive tech until it is actually on screen.
