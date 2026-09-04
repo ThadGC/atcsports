@@ -30,6 +30,16 @@ nothing. Every responsive class must be written out in full.
 `@keyframes` doing that added ~1350px of horizontal scroll to every page. Animate
 `background-position` for sweeps instead.
 
+**Stacking contexts trap dropdowns.** Any ancestor with a `transform`, a `filter` or its
+own `z-index` forms one, and a child's `z-index` cannot escape it. `Reveal` used to do
+this permanently; it now drops both once the entry animation ends. The `Select` panel is
+portalled to `<body>` for the same reason. If a new overlay paints underneath something,
+this is why.
+
+**Running the suites repeatedly trips the API rate limiter** (300 requests / 15 min).
+Every page load calls `/api/auth/me`. A wave of 429s in the audit means restart the API,
+not that the site broke.
+
 **Be careful with bulk CSS deletion.** An over-broad "remove dead CSS" pass deleted
 `.glass` and `.bezel` along with the intended block, silently killing the floating navbar
 and every card treatment. The user spotted it before the tests did.
@@ -43,8 +53,9 @@ address came from atcfootball.com verbatim and lives in `src/data/site.js`.
 A complete React site for ATC Sports (youth flag football, Roseville CA) replacing their
 TeamLinkt-hosted page, plus an Express API for parent accounts. 12 routes, prerendered to
 static HTML. All verification suites pass: 22/22 checklist, responsive clean across 12
-pages × 3 widths, menu 8/8, E2E 15/15, no JS errors. Working tree clean, pushed to
-`main` at `df70e9c`. Nothing is deployed — there is no live site.
+pages × 3 widths, menu 8/8, E2E 16/16, buttons all centred, listbox behaviour, no JS
+errors. Working tree clean, pushed to
+`main` at `072b7b9`. Nothing is deployed — there is no live site.
 
 ## 2. What was done this session
 
@@ -61,8 +72,14 @@ pages × 3 widths, menu 8/8, E2E 15/15, no JS errors. Working tree clean, pushed
   across 9 divisions.
 - **Client document**: `docs/parent-accounts.html` → `npm run pdf`. Also published as an
   artifact at https://claude.ai/code/artifact/65446824-231e-42c3-a2e0-2d4d1cfb46a9
+- **Custom listbox** (`src/components/Select.jsx`): replaced all three native selects.
+  Portalled to `<body>`, flips above the trigger when short of room, full keyboard
+  support including type-ahead.
+- **Buttons**: `.btn` centres its content, so any stretched button is centred.
+  `scripts/btn-center.mjs` enforces it across 11 pages × 3 widths.
 - **Verification harness** (`scripts/`): `checklist.mjs`, `shots.mjs`, `menu-test.mjs`,
-  `e2e.mjs`, `lb.mjs`, `mobile-check.mjs`, `tap.mjs`, `demo-login.mjs`.
+  `e2e.mjs`, `lb.mjs`, `btn-center.mjs`, `sel.mjs`, `mobile-check.mjs`, `tap.mjs`,
+  `demo-login.mjs`.
 - **Asset generators**: `logo-alpha.mjs`, `hero-mobile.mjs`, `stadium.mjs`,
   `crop-flyer.mjs`, `use-stadium.mjs`.
 
@@ -111,6 +128,8 @@ BASE=http://localhost:4180 node scripts/shots.mjs        # 12 pages x 390/834/14
 BASE=http://localhost:4180 node scripts/menu-test.mjs    # mobile + tablet nav
 BASE=http://localhost:4180 node scripts/e2e.mjs          # signup, login, athletes, contact
 BASE=http://localhost:4180 node scripts/lb.mjs           # gallery lightbox
+BASE=http://localhost:4180 node scripts/btn-center.mjs   # no off-centre buttons
+BASE=http://localhost:4180 node scripts/sel.mjs          # custom dropdown
 
 # Swap in a supplied backdrop photo
 npm run stadium -- /path/to/photo.jpg && npm run build
