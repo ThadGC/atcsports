@@ -1,0 +1,648 @@
+<title>ATC Sports Parent Accounts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+  :root {
+    --ground:      #FAF7F1;
+    --surface:     #FFFFFF;
+    --surface-alt: #F2EDE3;
+    --line:        #DED5C4;
+    --line-soft:   #EAE3D6;
+    --text:        #1C1A16;
+    --text-soft:   #57503F;
+    --text-faint:  #857C67;
+    --gold:        #9A7B32;
+    --gold-bright: #C6A055;
+    --gold-wash:   #F6EEDC;
+    --live:        #3F6B45;
+    --live-wash:   #E7F0E6;
+    --open:        #8A5A22;
+    --open-wash:   #F7EBDC;
+
+    --measure: 66ch;
+    --step: clamp(1rem, 0.6rem + 1.6vw, 1.5rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #0C0C0D;
+      --surface:     #141414;
+      --surface-alt: #1B1A18;
+      --line:        #302E29;
+      --line-soft:   #232220;
+      --text:        #F3EFE7;
+      --text-soft:   #B4AC9B;
+      --text-faint:  #857D6C;
+      --gold:        #D9B86C;
+      --gold-bright: #EBD5A2;
+      --gold-wash:   #241E10;
+      --live:        #8FBF96;
+      --live-wash:   #162117;
+      --open:        #DFA968;
+      --open-wash:   #241A0F;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:      #0C0C0D;
+    --surface:     #141414;
+    --surface-alt: #1B1A18;
+    --line:        #302E29;
+    --line-soft:   #232220;
+    --text:        #F3EFE7;
+    --text-soft:   #B4AC9B;
+    --text-faint:  #857D6C;
+    --gold:        #D9B86C;
+    --gold-bright: #EBD5A2;
+    --gold-wash:   #241E10;
+    --live:        #8FBF96;
+    --live-wash:   #162117;
+    --open:        #DFA968;
+    --open-wash:   #241A0F;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--text);
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0 var(--step) 5rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 54rem; margin: 0 auto; }
+  .measure { max-width: var(--measure); }
+
+  h1, h2, h3, .ui {
+    font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+    text-wrap: balance;
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 3.5rem 0 2rem;
+    border-bottom: 2px solid var(--text);
+  }
+
+  .eyebrow {
+    font-family: Archivo, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 1.3rem + 3vw, 3.1rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  .standfirst {
+    font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem);
+    color: var(--text-soft);
+    margin: 0;
+    max-width: var(--measure);
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.75rem;
+    font-family: Archivo, sans-serif;
+    font-size: 0.78rem;
+    color: var(--text-faint);
+    padding-top: 0.25rem;
+  }
+  .meta b { color: var(--text-soft); font-weight: 600; }
+
+  /* ---------- sections ---------- */
+  section { padding-top: 3.25rem; }
+
+  h2 {
+    font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.65rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.9rem;
+  }
+
+  h3 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    margin: 0 0 0.4rem;
+  }
+
+  p { margin: 0 0 1rem; max-width: var(--measure); }
+  p:last-child { margin-bottom: 0; }
+
+  a { color: var(--gold); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+  code {
+    font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    font-size: 0.86em;
+    background: var(--surface-alt);
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+    padding: 0.08em 0.34em;
+  }
+
+  /* ---------- the journey: a real sequence, so it is numbered ---------- */
+  .journey {
+    list-style: none;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+  }
+
+  .journey li {
+    display: grid;
+    grid-template-columns: 3.25rem 1fr;
+    gap: 0 1.25rem;
+    padding: 1.4rem 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .journey li:first-child { border-top: 1px solid var(--line); }
+  .journey li:last-child { border-bottom: 1px solid var(--line); }
+
+  .num {
+    font-family: Archivo, sans-serif;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--gold);
+    padding-top: 0.15rem;
+  }
+
+  .journey p { margin: 0.35rem 0 0; color: var(--text-soft); }
+  .journey .aside {
+    margin-top: 0.5rem;
+    font-size: 0.92rem;
+    color: var(--text-faint);
+  }
+
+  /* ---------- status ---------- */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: Archivo, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.22rem 0.55rem;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .pill::before {
+    content: "";
+    width: 6px; height: 6px; border-radius: 50%;
+    background: currentColor;
+  }
+  .pill.live { color: var(--live); background: var(--live-wash); }
+  .pill.open { color: var(--open); background: var(--open-wash); }
+
+  /* ---------- data table ---------- */
+  .scroll { overflow-x: auto; margin-top: 1.5rem; }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 30rem;
+    font-size: 0.95rem;
+  }
+  caption {
+    text-align: left;
+    font-family: Archivo, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    padding-bottom: 0.6rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.7rem 1rem 0.7rem 0;
+    border-bottom: 1px solid var(--line-soft);
+    vertical-align: top;
+  }
+  th {
+    font-family: Archivo, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    border-bottom: 1px solid var(--line);
+  }
+  td:first-child { font-weight: 600; white-space: nowrap; padding-right: 1.5rem; }
+  td:last-child, th:last-child { padding-right: 0; color: var(--text-soft); }
+
+  /* ---------- callout ---------- */
+  .note {
+    border-left: 3px solid var(--gold-bright);
+    background: var(--gold-wash);
+    padding: 1.1rem 1.25rem;
+    margin-top: 1.5rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .note p { max-width: none; }
+
+  /* ---------- decisions ---------- */
+  .decisions { display: grid; gap: 0; margin-top: 1.5rem; }
+  .decision {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem 1.5rem;
+    align-items: start;
+    padding: 1.15rem 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .decision:first-child { border-top: 1px solid var(--line); }
+  .decision:last-child { border-bottom: 1px solid var(--line); }
+  .decision p { grid-column: 1 / -1; margin: 0; color: var(--text-soft); font-size: 0.98rem; }
+
+  /* ---------- demo box ---------- */
+  .demo {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 1.35rem 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .demo dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 1.25rem;
+    margin: 0.9rem 0 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.9rem;
+  }
+  .demo dt { color: var(--text-faint); }
+  .demo dd { margin: 0; color: var(--text); font-weight: 500; }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-family: Archivo, sans-serif;
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.5rem;
+    justify-content: space-between;
+  }
+
+  :focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 2px; border-radius: 2px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  @media (max-width: 34rem) {
+    .journey li { grid-template-columns: 2.25rem 1fr; gap: 0 0.85rem; }
+    .decision { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- print / PDF ---------- */
+  @media print {
+    /* Always print on the light palette, whatever theme the screen was in. */
+    :root, :root[data-theme="dark"] {
+      --ground:      #FFFFFF;
+      --surface:     #FFFFFF;
+      --surface-alt: #F2EDE3;
+      --line:        #C9BFA9;
+      --line-soft:   #E0D8C7;
+      --text:        #16150F;
+      --text-soft:   #4A4436;
+      --text-faint:  #6E6754;
+      --gold:        #856819;
+      --gold-bright: #B08F44;
+      --gold-wash:   #F7F1E2;
+      --live:        #335A39;
+      --live-wash:   #E7F0E6;
+      --open:        #7A4D18;
+      --open-wash:   #F7EBDC;
+    }
+
+    @page {
+      size: letter;
+      margin: 16mm 15mm 14mm;
+    }
+
+    body {
+      padding: 0;
+      font-size: 10.5pt;
+      line-height: 1.5;
+      background: #fff;
+    }
+
+    .wrap { max-width: none; }
+    :root { --measure: none; }
+
+    .masthead { padding-top: 0; break-after: avoid; }
+    h1 { font-size: 24pt; }
+    .standfirst { font-size: 11.5pt; }
+
+    section { padding-top: 20pt; break-inside: auto; }
+    h2 { font-size: 13pt; break-after: avoid; }
+    h3 { font-size: 10.5pt; break-after: avoid; }
+
+    /* Never split a step, a decision, a table row or a callout across pages. */
+    .journey li,
+    .decision,
+    .demo,
+    .note,
+    tr {
+      break-inside: avoid;
+    }
+
+    table { font-size: 9.5pt; min-width: 0; }
+    .scroll { overflow: visible; }
+
+    /* Spell out link targets, since a printed page cannot be clicked. */
+    a[href^="http"]::after {
+      content: " (" attr(href) ")";
+      font-size: 0.85em;
+      color: var(--text-faint);
+      word-break: break-all;
+    }
+
+    footer { break-inside: avoid; margin-top: 24pt; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">ATC Sports · Website documentation</p>
+    <h1>Parent accounts, registration and the logged&#8209;in area</h1>
+    <p class="standfirst">
+      What a parent does on the new site, what the league gets from it, and the handful of
+      decisions still waiting on ATC.
+    </p>
+    <div class="meta">
+      <span>Prepared by <b>Apex Growth</b></span>
+      <span>For <b>ATC Sports, Roseville CA</b></span>
+    </div>
+  </header>
+
+  <section>
+    <h2>The short version</h2>
+    <p>
+      A parent creates one account for their family. Inside it they add each child they want
+      to play, choose the division, and note who the child wants to be on a team with. Payment
+      and official league registration still happen on TeamLinkt, the system ATC already uses.
+    </p>
+    <p>
+      The account is the part that is new. It gives parents somewhere to keep their family's
+      details between seasons instead of retyping them, and it gives ATC a record of who is
+      interested before anyone has paid.
+    </p>
+  </section>
+
+  <section>
+    <h2>What a parent actually does</h2>
+    <ol class="journey">
+      <li>
+        <span class="num">01</span>
+        <div>
+          <h3>Taps Register</h3>
+          <p>
+            From the top of any page, the button in the hero, or the bar that follows them up
+            the page on a phone.
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <div>
+          <h3>Creates the account</h3>
+          <p>
+            First name, last name, email and a password. Mobile number is optional and the form
+            says why it is asked for: weather calls and game day changes.
+          </p>
+          <p class="aside">
+            No card details at this stage. Four fields, about thirty seconds. If they mistype a
+            common email domain the form offers the correction before they submit.
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <div>
+          <h3>Lands in their account</h3>
+          <p>
+            They are logged in straight away rather than being sent back to a login screen.
+            The page greets them by first name and shows an empty athlete list.
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="num">04</span>
+        <div>
+          <h3>Adds each child</h3>
+          <p>
+            Name, division picked from the nine ATC runs, and a free text box for a friend or
+            coach request. One account holds as many children as the family has playing.
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="num">05</span>
+        <div>
+          <h3>Goes to TeamLinkt to pay</h3>
+          <p>
+            The account page carries a button through to the existing registration portal. The
+            spot is confirmed once that is done, and the page says so in those words.
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="num">06</span>
+        <div>
+          <h3>Comes back whenever</h3>
+          <p>
+            The login lasts a week on that device. Returning parents add another child, drop
+            one who is not playing this season, or check their division's Saturday time.
+          </p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>What the account holds</h2>
+    <p>
+      Deliberately little. Everything here is something a parent would expect to give a youth
+      league, and nothing is collected that the site does not use.
+    </p>
+
+    <div class="scroll">
+      <table>
+        <caption>Stored per family</caption>
+        <thead>
+          <tr><th scope="col">Field</th><th scope="col">Why it is there</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Parent name</td><td>Greeting them by name, and knowing who to call</td></tr>
+          <tr><td>Email</td><td>Signing in, and reaching the family about the season</td></tr>
+          <tr><td>Mobile</td><td>Optional. Weather calls and game day changes</td></tr>
+          <tr><td>Password</td><td>Stored scrambled, never as text. See below</td></tr>
+          <tr><td>Athlete name</td><td>Rostering</td></tr>
+          <tr><td>Division</td><td>Which of the nine brackets the child plays in</td></tr>
+          <tr><td>Friend or coach request</td><td>Honored where possible, first come first served</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <p>
+        No card numbers touch this site. Payment stays on TeamLinkt, which already handles it
+        for ATC today.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>How accounts are protected</h2>
+    <p>
+      Passwords are put through a one way scramble before they are saved, so nobody at ATC or
+      at Apex Growth can read a parent's password, and a stolen copy of the database does not
+      hand anyone a working login.
+    </p>
+    <p>
+      The login itself is kept in a cookie the browser will not let page scripts read, which
+      is the protection against a common form of session theft. If someone enters an email
+      that has no account, the site gives the same message as a wrong password, so the login
+      page cannot be used to work out which families are registered. Repeated failed attempts
+      from the same place are slowed down automatically.
+    </p>
+    <p>
+      One family cannot see or delete another family's children. Every request for athlete
+      records is checked against the account that is signed in.
+    </p>
+  </section>
+
+  <section>
+    <h2>The contact form</h2>
+    <p>
+      Messages sent from the contact page are saved with the sender's name, email, subject and
+      message. The form validates before it sends and confirms on screen when it has gone
+      through, so nobody is left wondering.
+    </p>
+    <p>
+      Those messages are currently stored rather than emailed, because ATC has not picked an
+      email provider yet. That is one of the open decisions below.
+    </p>
+  </section>
+
+  <section>
+    <h2>See it yourself</h2>
+    <p>
+      A demonstration account is loaded with two children on it, so the logged in area can be
+      walked through without signing up first.
+    </p>
+    <div class="demo">
+      <p class="eyebrow">Demo login</p>
+      <dl>
+        <dt>Email</dt><dd>demo@atcsports.test</dd>
+        <dt>Password</dt><dd>atcdemo2026</dd>
+      </dl>
+      <p class="aside" style="margin-top:0.9rem;font-size:0.9rem;color:var(--text-faint)">
+        Demonstration data only. It is not created on the live site.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What is running, and what ATC still needs to decide</h2>
+
+    <div class="decisions">
+      <div class="decision">
+        <h3>Accounts, athletes and the contact form</h3>
+        <span class="pill live">Working</span>
+        <p>Signing up, signing in, adding and removing children, and sending a message all work today.</p>
+      </div>
+
+      <div class="decision">
+        <h3>Where the data lives</h3>
+        <span class="pill open">Needs ATC</span>
+        <p>
+          Records currently sit in a file on the server, which is fine for a demonstration but
+          not for a live season. Connecting a proper database is a configuration change, not a
+          rebuild. ATC picks the host.
+        </p>
+      </div>
+
+      <div class="decision">
+        <h3>Sending email</h3>
+        <span class="pill open">Needs ATC</span>
+        <p>
+          Nothing is emailed yet: no welcome message, and no notification to the league when a
+          contact form comes in. This needs an email provider account in ATC's name.
+        </p>
+      </div>
+
+      <div class="decision">
+        <h3>Forgotten passwords</h3>
+        <span class="pill open">Not built</span>
+        <p>
+          There is no self service password reset, because a reset has to arrive by email. It
+          follows on from the email decision above, and should be in place before a real season
+          opens.
+        </p>
+      </div>
+
+      <div class="decision">
+        <h3>A league view of all parents</h3>
+        <span class="pill open">Not built</span>
+        <p>
+          ATC cannot currently log in and browse every family. The permission levels for
+          parent, coach and admin already exist in the system, but no screen has been built on
+          top of them. Worth deciding whether ATC wants this or is happy staying in TeamLinkt.
+        </p>
+      </div>
+
+      <div class="decision">
+        <h3>Payment</h3>
+        <span class="pill live">Stays on TeamLinkt</span>
+        <p>
+          No change proposed. Fees, refunds and official registration continue exactly as they
+          do now.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Suggested order</h2>
+    <p>
+      Pick an email provider first, because the welcome message, the contact notification and
+      the password reset all depend on it. Connect the database next. The league view can wait
+      until ATC has used the site for a season and knows whether it is needed.
+    </p>
+  </section>
+
+  <footer>
+    <span>ATC Sports · Parent accounts</span>
+    <span>Prepared by Apex Growth</span>
+  </footer>
+
+</div>
