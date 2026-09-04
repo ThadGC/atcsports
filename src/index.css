@@ -12,11 +12,16 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-padding-top: 6rem;
+    /* Must sit on html, not body. The viewport takes its overflow from html; when html
+       is visible it falls through to body, and WebKit then treats body as the scroll
+       container, so position:fixed children resolve against body's scrollport instead
+       of the viewport. On iOS that left the backdrop covering part of the screen and
+       parked the sticky bar at the bottom of that box rather than the screen. */
+    overflow-x: hidden;
   }
 
   body {
     background-color: var(--ink);
-    overflow-x: hidden;
     text-rendering: optimizeLegibility;
   }
 
@@ -26,7 +31,15 @@
   body::before {
     content: '';
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* Height must not follow the visual viewport. An inset:0 box resizes every time a
+       phone toolbar collapses, and background-size:cover re-crops with it, which reads
+       as the photo zooming while you scroll. vh, and lvh where supported, stay pinned
+       to the largest viewport height, so the crop is computed once. */
+    height: 100vh;
+    height: 100lvh;
     z-index: 0;
     pointer-events: none;
     background-image:
