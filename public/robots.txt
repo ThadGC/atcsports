@@ -3,5 +3,6 @@ Allow: /
 Disallow: /account
 Disallow: /login
 Disallow: /register
+Disallow: /brand-guidelines
 
 Sitemap: https://atcfootball.com/sitemap.xml
