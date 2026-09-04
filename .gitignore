@@ -3,3 +3,8 @@ dist
 .env
 .DS_Store
 *.log
+.vercel
+.env*
+
+# Client review captures. Large binaries, regenerate with scripts/compare-shots.mjs
+screenshots
