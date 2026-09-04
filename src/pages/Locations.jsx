@@ -57,7 +57,7 @@ export default function Locations() {
         </div>
       </Section>
 
-      <Section className="border-t border-white/8">
+      <Section className="section-ruled">
         <div className="shell grid gap-4 sm:gap-5 lg:grid-cols-3">
           {[
             ['calendar', 'Game day is Saturday', flagFootball.window],
@@ -79,7 +79,7 @@ export default function Locations() {
         </div>
       </Section>
 
-      <Section className="border-t border-white/8">
+      <Section className="section-ruled">
         <div className="shell text-center">
           <Reveal>
             <h2 className="mx-auto max-w-3xl font-display t-h2 display-skew">

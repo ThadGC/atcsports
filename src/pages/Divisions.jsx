@@ -94,7 +94,7 @@ export default function Divisions() {
         </div>
       </Section>
 
-      <Section className="border-t border-white/8">
+      <Section className="section-ruled">
         <div className="shell">
           <SectionHead
             eyebrow="Girls divisions"
@@ -109,7 +109,7 @@ export default function Divisions() {
         </div>
       </Section>
 
-      <Section className="border-t border-white/8">
+      <Section className="section-ruled">
         <div className="shell">
           <Reveal>
             <Bezel>

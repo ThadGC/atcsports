@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { nav, org } from '../data/site.js'
+import { nav, navFlat, org } from '../data/site.js'
 import { useAuth } from '../auth/AuthContext.jsx'
 import Icon from './Icon.jsx'
 import Button from './Button.jsx'
@@ -49,14 +49,14 @@ export default function Nav() {
             className={[
               'pointer-events-auto relative mx-auto grid grid-cols-[auto_1fr_auto] items-center gap-2 rounded-full glass transition-all duration-700 ease-swift',
               lifted
-                ? 'mt-3 py-2 pl-2 pr-2 shadow-[0_18px_50px_-24px_rgba(0,0,0,0.95)] sm:pl-3'
-                : 'mt-4 py-2.5 pl-2 pr-2.5 sm:mt-6 sm:pl-3.5',
+                ? 'mt-3 py-2 pl-1.5 pr-2 shadow-[0_18px_50px_-24px_rgba(0,0,0,0.95)] sm:pl-3'
+                : 'mt-4 py-2.5 pl-1.5 pr-2.5 sm:mt-6 sm:pl-3.5',
             ].join(' ')}
           >
             {/* Clickable logo → home */}
             <Link
               to="/"
-              className="flex min-h-[44px] shrink-0 items-center rounded-full transition-opacity duration-500 hover:opacity-80"
+              className="-ml-1 flex min-h-[44px] shrink-0 items-center rounded-full pt-1 transition-opacity duration-500 hover:opacity-80 sm:ml-0 sm:pt-0"
               aria-label={`${org.name} home`}
             >
               <img
@@ -64,7 +64,7 @@ export default function Nav() {
                 alt=""
                 width="150"
                 height="24"
-                className="h-8 w-auto sm:h-9 lg:h-10"
+                className="h-8 w-auto shrink-0 sm:h-9 lg:h-9 xl:h-10"
               />
               <span className="sr-only">{org.name}</span>
             </Link>
@@ -72,21 +72,65 @@ export default function Nav() {
 
             {/* Desktop links, pinned to the true centre of the bar so the logo and
                 the CTA cluster can change width without shifting them. */}
-            <nav className="hidden justify-center lg:flex lg:items-center" aria-label="Primary">
-              {nav.map((item) => (
-                <NavLink
-                  key={item.href}
-                  to={item.href}
-                  className={({ isActive }) =>
-                    [
-                      'relative whitespace-nowrap rounded-full px-2.5 py-2 text-[0.74rem] font-bold uppercase tracking-[0.08em] transition-all duration-500 ease-swift xl:px-3.5 xl:text-[0.78rem] xl:tracking-[0.1em]',
-                      isActive ? 'text-gold' : 'text-white/62 hover:text-white',
-                    ].join(' ')
-                  }
-                >
-                  {item.label}
-                </NavLink>
-              ))}
+            <nav className="hidden min-w-0 justify-center lg:flex lg:items-center" aria-label="Primary">
+              {nav.map((item) =>
+                item.children ? (
+                  <div key={item.label} className="group/menu relative">
+                    <NavLink
+                      to={item.href}
+                      className={({ isActive }) =>
+                        [
+                          'relative flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2 text-[0.74rem] font-bold uppercase tracking-[0.08em] transition-all duration-500 ease-swift xl:px-3.5 xl:text-[0.78rem] xl:tracking-[0.1em]',
+                          isActive || item.children.some((c) => c.href === pathname)
+                            ? 'text-gold'
+                            : 'text-white/62 hover:text-white',
+                        ].join(' ')
+                      }
+                    >
+                      {item.label}
+                      <Icon
+                        name="arrow"
+                        className="h-2.5 w-2.5 rotate-45 opacity-60 transition-transform duration-500 group-hover/menu:translate-y-px"
+                        strokeWidth={2.2}
+                      />
+                    </NavLink>
+
+                    {/* Opens on hover and on keyboard focus, so it is reachable by tab. */}
+                    <div className="pointer-events-none absolute left-1/2 top-full w-64 -translate-x-1/2 pt-3 opacity-0 transition-all duration-300 ease-swift group-hover/menu:pointer-events-auto group-hover/menu:opacity-100 group-focus-within/menu:pointer-events-auto group-focus-within/menu:opacity-100">
+                      <div className="glass-panel overflow-hidden rounded-3xl p-1.5 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.98)]">
+                        {item.children.map((c) => (
+                          <NavLink
+                            key={c.href}
+                            to={c.href}
+                            className={({ isActive }) =>
+                              [
+                                'block rounded-2xl px-3.5 py-2.5 transition-colors duration-300',
+                                isActive ? 'bg-gold/12 text-gold' : 'text-white/80 hover:bg-white/6 hover:text-gold',
+                              ].join(' ')
+                            }
+                          >
+                            <span className="block text-[0.82rem] font-bold">{c.label}</span>
+                            <span className="mt-0.5 block text-[0.72rem] text-white/42">{c.note}</span>
+                          </NavLink>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <NavLink
+                    key={item.href}
+                    to={item.href}
+                    className={({ isActive }) =>
+                      [
+                        'relative whitespace-nowrap rounded-full px-2.5 py-2 text-[0.74rem] font-bold uppercase tracking-[0.08em] transition-all duration-500 ease-swift xl:px-3.5 xl:text-[0.78rem] xl:tracking-[0.1em]',
+                        isActive ? 'text-gold' : 'text-white/62 hover:text-white',
+                      ].join(' ')
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                ),
+              )}
             </nav>
 
             <div className="col-start-3 flex items-center justify-end gap-1.5 sm:gap-2">
@@ -95,29 +139,29 @@ export default function Nav() {
               <a
                 href={org.phoneHref}
                 aria-label={`Call ${org.name} on ${org.phone}`}
-                className="hidden h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-gold/30 bg-gold/8 px-3 text-[0.78rem] font-bold text-gold transition-all duration-500 ease-swift hover:border-gold/60 hover:bg-gold/14 md:inline-flex xl:px-4"
+                className="hidden h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-gold/30 bg-gold/8 px-3 text-[0.78rem] font-bold text-gold transition-all duration-500 ease-swift hover:border-gold/60 hover:bg-gold/14 md:inline-flex 2xl:px-4"
               >
                 <Icon name="phone" className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.6} />
-                <span className="hidden xl:inline">{org.phone}</span>
+                <span className="hidden 2xl:inline">{org.phone}</span>
               </a>
 
               {user ? (
                 <Link
                   to="/account"
                   aria-label="Your account"
-                  className="hidden h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 text-[0.78rem] font-bold text-gold transition-all duration-500 ease-swift hover:bg-gold/16 sm:inline-flex xl:px-4"
+                  className="hidden h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 text-[0.78rem] font-bold text-gold transition-all duration-500 ease-swift hover:bg-gold/16 sm:inline-flex 2xl:px-4"
                 >
                   <Icon name="user" className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.6} />
-                  <span className="hidden xl:inline">{user.firstName || 'Account'}</span>
+                  <span className="hidden 2xl:inline">{user.firstName || 'Account'}</span>
                 </Link>
               ) : (
                 <Link
                   to="/login"
                   aria-label="Log in"
-                  className="hidden h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-white/12 px-3 text-[0.78rem] font-bold uppercase tracking-[0.1em] text-gold transition-all duration-500 ease-swift hover:border-gold/50 hover:bg-gold/8 sm:inline-flex xl:px-4"
+                  className="hidden h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-white/12 px-3 text-[0.78rem] font-bold uppercase tracking-[0.1em] text-gold transition-all duration-500 ease-swift hover:border-gold/50 hover:bg-gold/8 sm:inline-flex 2xl:px-4"
                 >
                   <Icon name="lock" className="h-[1.05rem] w-[1.05rem]" strokeWidth={1.6} />
-                  <span className="hidden xl:inline">Log in</span>
+                  <span className="hidden 2xl:inline">Log in</span>
                 </Link>
               )}
 
@@ -178,7 +222,7 @@ export default function Nav() {
 
         <div className="relative flex h-[100dvh] flex-col overflow-y-auto px-6 pb-10 pt-28">
           <nav className="flex flex-col" aria-label="Mobile">
-            {nav.map((item, i) => (
+            {navFlat.map((item, i) => (
               <NavLink
                 key={item.href}
                 to={item.href}
@@ -211,7 +255,7 @@ export default function Nav() {
             style={{
               transform: open ? 'translateY(0)' : 'translateY(2rem)',
               opacity: open ? 1 : 0,
-              transition: `transform 700ms cubic-bezier(0.32,0.72,0,1) ${90 + nav.length * 55}ms, opacity 700ms cubic-bezier(0.32,0.72,0,1) ${90 + nav.length * 55}ms`,
+              transition: `transform 700ms cubic-bezier(0.32,0.72,0,1) ${90 + navFlat.length * 55}ms, opacity 700ms cubic-bezier(0.32,0.72,0,1) ${90 + navFlat.length * 55}ms`,
             }}
           >
             <Button to="/register" full>Register your athlete</Button>

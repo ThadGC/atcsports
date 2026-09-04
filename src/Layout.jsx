@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import Nav from './components/Nav.jsx'
 import Footer from './components/Footer.jsx'
 import CardGlow from './components/CardGlow.jsx'
+import SectionRules from './components/SectionRules.jsx'
 import MobileCtaBar from './components/MobileCtaBar.jsx'
 import { AuthProvider } from './auth/AuthContext.jsx'
 
@@ -19,6 +20,7 @@ export default function Layout() {
     <AuthProvider>
       <ScrollToTop />
       <CardGlow />
+      <SectionRules />
       <Nav />
       <main id="main">
         <Outlet />

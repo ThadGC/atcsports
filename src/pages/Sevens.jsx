@@ -59,7 +59,7 @@ export default function Sevens() {
         </div>
       </Section>
 
-      <Section className="border-t border-white/8">
+      <Section className="section-ruled">
         <div className="shell">
           <SectionHead eyebrow="Rules" title="How the game is played" lead={sevens.field} />
 
@@ -121,7 +121,7 @@ export default function Sevens() {
         </div>
       </Section>
 
-      <Section className="border-t border-white/8">
+      <Section className="section-ruled">
         <div className="shell text-center">
           <Reveal>
             <span className="eyebrow">Coaches & programs</span>

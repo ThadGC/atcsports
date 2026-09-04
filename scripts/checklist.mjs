@@ -3,7 +3,7 @@ import { chromium } from 'playwright'
 import { existsSync, readFileSync } from 'fs'
 
 const BASE = process.env.BASE || 'http://localhost:4180'
-const PAGES = ['/', '/flag-football', '/7v7', '/camps', '/divisions', '/locations', '/contact', '/login', '/register']
+const PAGES = ['/', '/flag-football', '/7v7', '/camps', '/schedule', '/divisions', '/standings', '/locations', '/contact', '/login', '/register']
 const b = await chromium.launch()
 const results = []
 const add = (n, label, pass, note = '') => results.push({ n, label, pass, note })

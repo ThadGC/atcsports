@@ -5,6 +5,7 @@ import Button from '../components/Button.jsx'
 import Icon from '../components/Icon.jsx'
 import Bezel from '../components/Bezel.jsx'
 import PageHero from '../components/PageHero.jsx'
+import SizingGuide from '../components/SizingGuide.jsx'
 import { Section, SectionHead } from '../components/Section.jsx'
 
 export default function FlagFootball() {
@@ -14,7 +15,7 @@ export default function FlagFootball() {
         title="Youth Flag Football League, Winter 2026"
         description="ATC Sports flag football runs nine Saturdays from November 14, 2026 to January 9, 2027 at Whitney High School and Mahany Park. Pre-K through 8th grade, co-ed and girls divisions, 10-player rosters, from $220."
         path="/flag-football"
-        image="/img/flag-pull.jpg"
+        image="/img/hero-action.jpg"
       />
 
       <PageHero
@@ -22,8 +23,8 @@ export default function FlagFootball() {
         title="Flag"
         accent="Football"
         lead="One morning a week, your athlete practices for an hour and then plays a real game on a real field. No weeknight scramble, no half a season on the bench."
-        image="/img/flag-pull.jpg"
-        alt="An ATC Sports ball carrier cutting into the end zone as a defender reaches for the flag"
+        image="/img/hero-action.jpg"
+        alt="An ATC Sports athlete breaking away down the sideline as a defender reaches for the flag"
         ctas={
           <>
             <Button to="/register">Register your athlete</Button>
@@ -73,7 +74,7 @@ export default function FlagFootball() {
       </Section>
 
       {/* Season schedule */}
-      <Section className="border-t border-white/8">
+      <Section className="section-ruled">
         <div className="shell">
           <SectionHead
             eyebrow="Season schedule"
@@ -191,7 +192,7 @@ export default function FlagFootball() {
       </Section>
 
       {/* Divisions + team structure */}
-      <Section className="border-t border-white/8">
+      <Section className="section-ruled">
         <div className="shell grid gap-4 sm:gap-5 lg:grid-cols-2">
           <Reveal>
             <Bezel className="h-full">
@@ -252,7 +253,7 @@ export default function FlagFootball() {
       </Section>
 
       {/* Fees */}
-      <Section className="border-t border-white/8">
+      <Section className="section-ruled">
         <div className="shell">
           <SectionHead
             align="center"
@@ -303,7 +304,20 @@ export default function FlagFootball() {
       </Section>
 
       {/* Refunds */}
-      <Section className="border-t border-white/8">
+      <Section className="section-ruled" id="uniform-sizing">
+        <div className="shell">
+          <SectionHead
+            eyebrow="Uniforms"
+            title="Get the size right first time"
+            lead="Uniforms are a one-time purchase and the jersey carries over to future seasons, so it is worth measuring rather than guessing."
+          />
+          <div className="mt-12">
+            <SizingGuide />
+          </div>
+        </div>
+      </Section>
+
+      <Section className="section-ruled">
         <div className="shell grid gap-10 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
             <SectionHead eyebrow="Refund policy" title="Plans change. Here's where you stand." />
@@ -330,7 +344,7 @@ export default function FlagFootball() {
         </div>
       </Section>
 
-      <Section className="border-t border-white/8">
+      <Section className="section-ruled">
         <div className="shell text-center">
           <Reveal>
             <h2 className="mx-auto max-w-3xl font-display t-h2 display-skew">

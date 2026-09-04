@@ -10,7 +10,7 @@ const VIEWPORTS = [
   { name: 'tablet', width: 834, height: 1112 },
   { name: 'desktop', width: 1440, height: 900 },
 ]
-const PAGES = (process.env.PAGES || '/,/flag-football,/7v7,/camps,/divisions,/locations,/contact,/register,/login,/nope-404').split(',')
+const PAGES = (process.env.PAGES || '/,/flag-football,/7v7,/camps,/schedule,/divisions,/standings,/locations,/contact,/register,/login,/nope-404').split(',')
 
 const browser = await chromium.launch()
 const report = []

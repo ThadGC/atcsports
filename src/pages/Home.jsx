@@ -6,6 +6,7 @@ import Button from '../components/Button.jsx'
 import Icon from '../components/Icon.jsx'
 import Bezel from '../components/Bezel.jsx'
 import Marquee from '../components/Marquee.jsx'
+import Gallery from '../components/Gallery.jsx'
 import { Section, SectionHead } from '../components/Section.jsx'
 
 const schema = {
@@ -48,14 +49,14 @@ export default function Home() {
       <section className="relative min-h-[100dvh] w-full overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/img/hero-action.jpg"
-            alt="An ATC Sports athlete releasing a pass during a Saturday game while a coach looks on"
+            src="/img/flag-pull.jpg"
+            alt="An ATC Sports ball carrier cutting into the end zone as a defender reaches for the flag"
             /* Widened and left-anchored on desktop so the athlete sits on the opposite
                side from the headline; the crop is raised so his head clears the nav. */
-            className="absolute inset-y-0 left-0 h-full w-full max-w-none object-cover object-[62%_38%] sm:object-[58%_36%] md:w-[122%] md:object-[46%_34%] lg:w-[118%] lg:object-[48%_36%] xl:w-[112%]"
+            className="absolute inset-y-0 left-0 h-full w-full max-w-none object-cover object-[64%_32%] sm:object-[58%_30%] md:w-[130%] md:object-[40%_26%] lg:w-[126%] lg:object-[42%_28%] xl:w-[120%]"
             fetchpriority="high"
-            width="1600"
-            height="1065"
+            width="1400"
+            height="1302"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/72 to-ink/35" />
           <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/70 to-transparent lg:via-ink/45" />
@@ -63,7 +64,7 @@ export default function Home() {
         </div>
 
         <div className="shell relative flex min-h-[100dvh] flex-col justify-end pb-14 pt-32 sm:pb-20 sm:pt-36 md:justify-start md:pb-24 md:pt-[20vh] lg:justify-center lg:pt-36">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl lg:pl-10 xl:pl-16">
             <Reveal y={26}>
               <span className="eyebrow eyebrow--live">
                 <span className="relative flex h-1.5 w-1.5">
@@ -90,7 +91,7 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={310}>
-              <div className="mt-9 flex flex-col gap-3 xs:flex-row xs:flex-wrap" data-hero-cta>
+              <div className="mt-9 flex flex-col gap-3 [&>a]:justify-center xs:flex-row xs:flex-wrap xs:[&>a]:justify-start" data-hero-cta>
                 <Button to="/register">Register your athlete</Button>
                 <Button to="/flag-football" variant="ghost" icon="calendar">
                   See the Winter season
@@ -159,7 +160,7 @@ export default function Home() {
       </Section>
 
       {/* ---------------- PROGRAMS (asymmetric bento) ---------------- */}
-      <Section className="border-t border-white/8">
+      <Section className="section-ruled">
         <div className="shell">
           <SectionHead
             eyebrow="Programs"
@@ -233,7 +234,7 @@ export default function Home() {
       </Section>
 
       {/* ---------------- SEASON SNAPSHOT ---------------- */}
-      <Section className="border-t border-white/8">
+      <Section className="section-ruled">
         <div className="shell">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
             <div className="lg:col-span-5">
@@ -293,7 +294,7 @@ export default function Home() {
       </Section>
 
       {/* ---------------- PRICING ---------------- */}
-      <Section className="border-t border-white/8">
+      <Section className="section-ruled">
         <div className="shell">
           <SectionHead
             align="center"
@@ -344,7 +345,7 @@ export default function Home() {
       </Section>
 
       {/* ---------------- CAMP ---------------- */}
-      <Section className="border-t border-white/8">
+      <Section className="section-ruled">
         <div className="shell">
           <Reveal>
             <Bezel>
@@ -397,7 +398,7 @@ export default function Home() {
       </Section>
 
       {/* ---------------- GALLERY ---------------- */}
-      <Section className="border-t border-white/8 !pb-0">
+      <Section className="section-ruled !pb-0">
         <div className="shell">
           <SectionHead
             align="center"
@@ -406,34 +407,15 @@ export default function Home() {
           />
         </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-3 px-3 sm:gap-4 sm:px-4 lg:grid-cols-4">
-          {gallery.slice(0, 8).map((g, i) => (
-            <Reveal
-              key={g.src}
-              delay={(i % 4) * 90}
-              className={i === 0 ? 'col-span-2 lg:col-span-2 lg:row-span-2' : ''}
-            >
-              <div className="group relative h-full overflow-hidden rounded-2xl border border-white/8">
-                <img
-                  src={g.src}
-                  alt={g.alt}
-                  loading="lazy"
-                  className={[
-                    'w-full object-cover transition-transform duration-[1100ms] ease-swift group-hover:scale-105',
-                    i === 0 ? 'aspect-[4/3] lg:h-full lg:aspect-auto' : 'aspect-[4/3]',
-                  ].join(' ')}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-70 transition-opacity duration-700 group-hover:opacity-30" />
-              </div>
-            </Reveal>
-          ))}
+        <div className="shell mt-14">
+          <Gallery />
         </div>
 
         <div className="pb-20 sm:pb-24" />
       </Section>
 
       {/* ---------------- FINAL CTA ---------------- */}
-      <section className="relative overflow-hidden border-t border-white/8">
+      <section className="section-ruled relative overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="/img/catch.jpg"

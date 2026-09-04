@@ -30,7 +30,7 @@
     z-index: 0;
     pointer-events: none;
     background-image:
-      linear-gradient(rgba(5, 5, 5, 0.86), rgba(5, 5, 5, 0.93)),
+      linear-gradient(rgba(5, 5, 5, 0.82), rgba(5, 5, 5, 0.90)),
       url('/img/stadium.jpg');
     background-size: cover;
     background-position: center;
@@ -117,6 +117,62 @@
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
 
+  /* Section rule: a gold hairline across the top of a section. A brighter band sweeps
+     it once, left to right, the first time it scrolls into view. */
+  .section-ruled {
+    position: relative;
+  }
+
+  .section-ruled::before,
+  .section-ruled::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    pointer-events: none;
+  }
+
+  .section-ruled::before {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(217, 184, 108, 0.5) 15%,
+      rgba(217, 184, 108, 0.5) 85%,
+      transparent
+    );
+  }
+
+  /* The band travels by moving its own gradient, not by transforming the element.
+     A translated pseudo-element would sit a full width past the section and widen
+     the document, which is a horizontal scrollbar on every page. */
+  .section-ruled::after {
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(247, 236, 208, 0.9) 44%,
+      rgba(255, 255, 255, 0.95) 50%,
+      rgba(247, 236, 208, 0.9) 56%,
+      transparent 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 55% 100%;
+    background-position: -60% 0;
+    opacity: 0;
+  }
+
+  .section-ruled.is-lit::after {
+    animation: rule-shine 1600ms cubic-bezier(0.32, 0.72, 0, 1) forwards;
+  }
+
+  @keyframes rule-shine {
+    0%   { opacity: 0; background-position: -60% 0; }
+    12%  { opacity: 1; }
+    88%  { opacity: 1; }
+    100% { opacity: 0; background-position: 160% 0; }
+  }
+
   /* ---- Double-bezel: outer tray + inner plate ---- */
   .bezel {
     position: relative;
@@ -141,8 +197,7 @@
     overflow: hidden;
   }
 
-  /* Pointer-reactive gold, desktop only. Touch devices have no hover to track, and
-     the effect is pure decoration, so it is never loaded there. */
+  /* Pointer-reactive gold, desktop only. Touch devices have no hover to track. */
   @media (hover: hover) and (pointer: fine) {
     .bezel {
       --mx: 50%;
@@ -228,6 +283,15 @@
     backdrop-filter: blur(22px) saturate(150%);
     -webkit-backdrop-filter: blur(22px) saturate(150%);
     border: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  /* Menu panels sit over live content, so they need a near-solid ground to stay
+     readable. The floating bar can stay airy; a dropdown cannot. */
+  .glass-panel {
+    background: rgba(9, 9, 10, 0.97);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
   }
 
   /* ---- Buttons ---- */

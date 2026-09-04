@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { nav, org, venues } from '../data/site.js'
+import { navFlat, org, venues } from '../data/site.js'
 import Icon from './Icon.jsx'
 
 export default function Footer() {
@@ -46,7 +46,7 @@ export default function Footer() {
               Programs
             </h2>
             <ul className="mt-3 space-y-0.5">
-              {nav.map((item) => (
+              {navFlat.map((item) => (
                 <li key={item.href}>
                   <Link
                     to={item.href}

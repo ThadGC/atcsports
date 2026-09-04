@@ -109,7 +109,7 @@ export default function Camps() {
         </div>
       </Section>
 
-      <Section className="border-t border-white/8">
+      <Section className="section-ruled">
         <div className="shell">
           <SectionHead
             align="center"

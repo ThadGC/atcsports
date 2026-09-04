@@ -196,20 +196,133 @@ export const camp = {
 }
 
 export const gallery = [
-  { src: '/img/hero-action.jpg', alt: 'ATC Sports player breaking free down the sideline as a defender dives for the flag' },
-  { src: '/img/catch.jpg', alt: 'Young receiver securing a catch on the Whitney Wildcats field' },
-  { src: '/img/flag-pull.jpg', alt: 'Defender reaching for the flag as a ball carrier cuts into the end zone' },
-  { src: '/img/qb-drop.jpg', alt: 'Quarterback setting his feet to throw while his coach watches' },
-  { src: '/img/action-3.jpg', alt: 'ATC Sports athletes competing during a Saturday league game' },
-  { src: '/img/action-5.jpg', alt: 'ATC Sports players lining up before the snap' },
-  { src: '/img/champion.jpg', alt: 'ATC Sports player in a white and gold jersey flexing on the field' },
+  { src: '/img/hero-action.jpg', alt: 'An ATC Sports player breaking away down the sideline as a defender dives for the flag' },
+  { src: '/img/catch.jpg', alt: 'A young receiver securing a catch on the Whitney Wildcats field' },
+  { src: '/img/flag-pull.jpg', alt: 'A defender reaching for the flag as a ball carrier cuts into the end zone' },
+  { src: '/img/qb-drop.jpg', alt: 'A quarterback setting his feet to throw while his coach watches' },
+  { src: '/img/action-3.jpg', alt: 'An ATC Sports player running the ball back up the sideline during a Saturday game' },
+  { src: '/img/action-5.jpg', alt: 'A young athlete releasing a pass as a coach looks on from the sideline' },
+  { src: '/img/champion.jpg', alt: 'An ATC Sports player in a white and gold jersey flexing on the field' },
+  { src: '/img/camp.jpg', alt: 'Elite Youth Football Skills Camp graphic showing athletes competing for a catch' },
 ]
 
+// Top-level navigation. The league tools group under one item so the bar stays a
+// single row; every destination is still reachable in one hover or one tap.
 export const nav = [
   { label: 'Flag Football', href: '/flag-football' },
   { label: '7-on-7', href: '/7v7' },
   { label: 'Camps', href: '/camps' },
-  { label: 'Divisions', href: '/divisions' },
-  { label: 'Locations', href: '/locations' },
+  {
+    label: 'League',
+    href: '/schedule',
+    children: [
+      { label: 'Schedule', href: '/schedule', note: 'Nine Saturdays, week by week' },
+      { label: 'Divisions', href: '/divisions', note: 'Co-ed and girls, Pre-K to 8th' },
+      { label: 'Standings', href: '/standings', note: 'Records by division' },
+      { label: 'Locations', href: '/locations', note: 'Whitney High and Mahany Park' },
+    ],
+  },
   { label: 'Contact', href: '/contact' },
+]
+
+// Flattened, for the mobile menu and the footer, where there is room for all of it.
+export const navFlat = nav.flatMap((item) => (item.children ? item.children : [item]))
+
+// Uniform sizing, transcribed from the chart ATC publishes on its Flag Football page.
+// Chest and waist are body measurements of the wearer, in inches.
+export const sizing = {
+  intro:
+    'Chest and waist refer to the body measurements of the wearer, in inches. For a measurement between two sizes, choose the larger size for a looser fit.',
+  howTo: [
+    ['Chest', 'Measure around the fullest part of the chest.'],
+    ['Waist', 'Measure around the natural waist.'],
+  ],
+  notes: [
+    'Larger and smaller sizes are available on request, in 10% sizing increments.',
+    'Tall sizes are available on request.',
+  ],
+  groups: [
+    {
+      id: 'youth-boys',
+      label: 'Youth Boys',
+      sub: 'US size',
+      sizes: [
+        { code: 'YXS', us: '6' },
+        { code: 'YS', us: '7-8' },
+        { code: 'YM', us: '10-12' },
+        { code: 'YL', us: '14' },
+        { code: 'YXL', us: '16' },
+      ],
+      rows: {
+        Chest: ['24 - 26', '26 - 28', '28 - 30', '30 - 32', '33 - 34'],
+        Waist: ['20 - 22', '22 - 24', '24 - 26', '26 - 28', '29 - 31'],
+      },
+    },
+    {
+      id: 'youth-girls',
+      label: 'Youth Girls',
+      sub: 'US size',
+      sizes: [
+        { code: 'YXS', us: '6' },
+        { code: 'YS', us: '7-8' },
+        { code: 'YM', us: '10-12' },
+        { code: 'YL', us: '14' },
+        { code: 'YXL', us: '16' },
+      ],
+      rows: {
+        Chest: ['24 - 26', '26 - 28', '28 - 30', '30 - 32', '33 - 34'],
+        Waist: ['20 - 22', '22 - 24', '24 - 26', '26 - 28', '29 - 31'],
+      },
+    },
+    {
+      id: 'men',
+      label: 'Men',
+      sub: 'Unisex',
+      sizes: [
+        { code: 'XS' }, { code: 'S' }, { code: 'M' }, { code: 'L' },
+        { code: 'XL' }, { code: '2XL' }, { code: '3XL' },
+      ],
+      rows: {
+        Chest: ['30 - 32', '34 - 36', '38 - 40', '42 - 44', '46 - 48', '50 - 52', '54 - 56'],
+        Waist: ['24 - 26', '28 - 30', '32 - 34', '36 - 38', '40 - 42', '44 - 46', '48 - 50'],
+      },
+    },
+    {
+      id: 'women',
+      label: 'Women',
+      sizes: [
+        { code: 'WXS' }, { code: 'WS' }, { code: 'WM' },
+        { code: 'WL' }, { code: 'WXL' }, { code: 'W2XL' },
+      ],
+      rows: {
+        Chest: ['32 - 33', '34 - 35', '36 - 37', '38.5 - 39.5', '41.5 - 42.5', '44.5 - 45.5'],
+        Waist: ['24 - 26', '26 - 28', '28 - 30', '30.5 - 32.5', '33.5 - 35.5', '36.5 - 38.5'],
+      },
+    },
+  ],
+}
+
+// The Winter 2026 roster exactly as the league has it entered. Numbered teams are
+// placeholders the league names later; the rest are named after their coach.
+export const teams = [
+  { division: 'Co-Ed', grade: 'Pre-K / Kindergarten', list: ['1', '2', '3', '4', '5', '6', '7', '8'] },
+  { division: 'Co-Ed', grade: '1st / 2nd Grade', list: ['2', '3', '4', '5', '6', 'Competente', 'Johnson', 'Ramsey'] },
+  { division: 'Co-Ed', grade: '3rd / 4th Grade', list: ['1', '2', '4', 'Casey', 'Jaime', 'Rapp', 'Van Tassel'] },
+  { division: 'Co-Ed', grade: '5th / 6th Grade', list: ['2', '3', '4', '5', '6', '7', '8', 'Casey'] },
+  { division: 'Co-Ed', grade: '7th / 8th Grade', list: ['1', '2', '3', '4', '5', '6', '7', 'Johnson'] },
+  { division: 'Girls', grade: '1st / 2nd Grade', list: ['1', '2', '3', '4', '5', '6', '7', '8'] },
+  { division: 'Girls', grade: '3rd / 4th Grade', list: ['1', '2', '3', '4', '5', '6', '7', 'Texon'] },
+  { division: 'Girls', grade: '5th / 6th Grade', list: ['1', '2', '3', '4', '5', '6', '7', '8'] },
+  { division: 'Girls', grade: '7th / 8th Grade', list: ['1', '2', '3', '4', '5', '6', '7', '8'] },
+]
+
+// Columns the league keeps for standings, in TeamLinkt's order.
+export const standingsColumns = [
+  ['GP', 'Games played'],
+  ['W', 'Won'],
+  ['L', 'Lost'],
+  ['T', 'Tied'],
+  ['PTS', 'Points'],
+  ['F', 'Points for'],
+  ['A', 'Points against'],
 ]

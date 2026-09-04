@@ -1,4 +1,4 @@
-import { nav, org } from '../data/site.js'
+import { navFlat, org } from '../data/site.js'
 import { Link } from 'react-router-dom'
 import Seo from '../components/Seo.jsx'
 import Reveal from '../components/Reveal.jsx'
@@ -43,7 +43,7 @@ export default function NotFound() {
                 Try one of these
               </p>
               <ul className="mt-5 flex flex-wrap justify-center gap-2.5">
-                {nav.map((item) => (
+                {navFlat.map((item) => (
                   <li key={item.href}>
                     <Link
                       to={item.href}

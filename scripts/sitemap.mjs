@@ -7,6 +7,8 @@ const PAGES = [
   ['/flag-football', 'weekly', '0.9'],
   ['/7v7', 'monthly', '0.8'],
   ['/camps', 'monthly', '0.8'],
+  ['/schedule', 'weekly', '0.85'],
+  ['/standings', 'weekly', '0.7'],
   ['/divisions', 'monthly', '0.7'],
   ['/locations', 'monthly', '0.6'],
   ['/contact', 'yearly', '0.5'],
