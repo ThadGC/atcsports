@@ -20,6 +20,15 @@
         ],
         "createdAt": "2026-09-04T19:54:52.265Z",
         "reason": "Scanner assumes a #ffffff ground and does not resolve the CSS variables; the rendered body computes to rgb(5,5,5) (verified in scripts/brand-pdf.mjs output) and every token measures AA or better against it: faint 5.16:1, muted 6.30:1, gold-500 8.31:1, gold 10.70:1, gold-lite 15.05:1"
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "docs/atc-brand-guidelines.html"
+        ],
+        "createdAt": "2026-09-05T01:59:45.380Z",
+        "reason": "No body copy is uppercase here. Every uppercase run is a heading (.d-hero/.d-h2/.d-h3, Anton uppercase is ATC's mandated display treatment) or a short label (.eyebrow, .panel h4, caption, thead th, .rule h5, .tag, .stat dd, .colophon dt); longest string is the 22-char heading 'The facts of the league', which is the labels-and-headings case the rule exempts"
       }
     ]
   }
