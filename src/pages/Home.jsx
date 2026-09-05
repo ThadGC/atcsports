@@ -319,11 +319,6 @@ export default function Home() {
                   className={['h-full', tier.best ? 'ring-1 ring-gold/45' : ''].join(' ')}
                 >
                   <div className="relative flex h-full flex-col p-7 text-center sm:p-8">
-                    {tier.best && (
-                      <span className="absolute inset-x-0 top-0 mx-auto w-max -translate-y-1/2 rounded-full bg-gradient-to-r from-gold-200 to-gold-500 px-3.5 py-1 text-[0.6rem] font-extrabold uppercase tracking-[0.18em] text-ink">
-                        Best value
-                      </span>
-                    )}
                     <h3 className="text-[0.66rem] font-bold uppercase tracking-[0.22em] text-white/55">
                       {tier.label}
                     </h3>
